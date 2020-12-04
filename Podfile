@@ -6,12 +6,12 @@ target 'Downloader' do
   use_frameworks!
 
   # Pods for Downloader
-	 pod 'RxSwift', '~> 5.0.0'
-   	 pod 'RxCocoa', '~> 5.0.0'
+  pod 'RxSwift', '~> 5.0.0'
+  pod 'RxCocoa', '~> 5.0.0'
     
-   	 pod 'Alamofire', '~> 5.0.0-rc.2'
-   	 pod 'R.swift', '~> 5.0.0'
-   	 pod 'RealmSwift', '~> 3.18.0'
+  pod 'Alamofire', '~> 5.0.0-rc.2'
+  pod 'R.swift', '~> 5.0.0'
+  pod 'RealmSwift', '~> 3.18.0'
 
 
 end

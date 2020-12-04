@@ -20,11 +20,17 @@ class BrowserConfigurator: BrowserConfiguratorType {
     }
     
     func configure(viewController: BrowserViewController) {
-        let presenter = BrowserPresenter()
+        let router = BrowserRouter()
+        let presenter = BrowserPresenter(interactor: interactor, router: router)
         presenter.view = viewController
         presenter.urlString = urlString
         viewController.webKitView.navigationDelegate = presenter
         viewController.presenter = presenter
+    }
+    
+    var interactor: BrowserInteractor {
+        let downloadService = DownloadService()
+        return BrowserInteractor(downloadService: downloadService)
     }
     
 }

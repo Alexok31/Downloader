@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3lV-J1-jef">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qfw-E9-3p6">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Item-->
+        <!--Search Video View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController storyboardIdentifier="SearchVideoViewController" id="BYZ-38-t0r" customClass="SearchVideoViewController" customModule="Downloader" customModuleProvider="target" sceneMemberID="viewController">
@@ -69,7 +69,7 @@
                             <constraint firstItem="Qif-nt-ZmJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="vUP-Ba-58q"/>
                         </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="1.circle.fill" catalog="system" id="6Rp-cL-blx"/>
+                    <navigationItem key="navigationItem" id="bXa-89-VdM"/>
                     <connections>
                         <outlet property="searchBar" destination="Qif-nt-ZmJ" id="IaS-AE-uUs"/>
                         <outlet property="topPageCollectioView" destination="HQe-XH-ppn" id="ny0-W4-VZx"/>
@@ -78,9 +78,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1276.8115942028987" y="-798.21428571428567"/>
+            <point key="canvasLocation" x="2186.9565217391305" y="-798.21428571428567"/>
         </scene>
-        <!--Item-->
+        <!--View Controller-->
         <scene sceneID="PaO-gC-Cbz">
             <objects>
                 <viewController id="EVM-mB-1aP" sceneMemberID="viewController">
@@ -90,27 +90,42 @@
                         <viewLayoutGuide key="safeArea" id="tzI-KN-iHO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="externaldrive.badge.person.crop" catalog="system" id="eAV-r1-nRg"/>
+                    <navigationItem key="navigationItem" id="E04-4L-x9o"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HnZ-gH-1yn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1277" y="629"/>
+            <point key="canvasLocation" x="2186.9565217391305" y="628.79464285714278"/>
         </scene>
-        <!--Item-->
+        <!--Download Process View Controller-->
         <scene sceneID="52z-xZ-pQS">
             <objects>
-                <viewController id="jTQ-7L-BMd" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DownloadProcessViewController" id="jTQ-7L-BMd" customClass="DownloadProcessViewController" customModule="Downloader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="XDQ-hZ-0c6">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Eo6-hK-Nu5">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="wgD-tG-fk9"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Eo6-hK-Nu5" firstAttribute="leading" secondItem="wgD-tG-fk9" secondAttribute="leading" id="Yjq-Tf-DCd"/>
+                            <constraint firstItem="Eo6-hK-Nu5" firstAttribute="top" secondItem="wgD-tG-fk9" secondAttribute="top" id="eoP-9o-SKo"/>
+                            <constraint firstItem="Eo6-hK-Nu5" firstAttribute="bottom" secondItem="wgD-tG-fk9" secondAttribute="bottom" id="gSY-Xf-gvN"/>
+                            <constraint firstItem="Eo6-hK-Nu5" firstAttribute="trailing" secondItem="wgD-tG-fk9" secondAttribute="trailing" id="jml-pt-Kg7"/>
+                        </constraints>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="folder.fill" catalog="system" id="s6Y-h2-WZG"/>
+                    <navigationItem key="navigationItem" id="Eb8-ij-uQv"/>
+                    <connections>
+                        <outlet property="downloadingVideosTableView" destination="Eo6-hK-Nu5" id="Pgr-Bz-Eql"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YhK-hA-1uB" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1277" y="-120"/>
+            <point key="canvasLocation" x="2186.9565217391305" y="-120.53571428571428"/>
         </scene>
         <!--Browser View Controller-->
         <scene sceneID="U4g-az-xzW">
@@ -162,24 +177,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xY7-LR-5HL" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2498.5507246376815" y="-121.20535714285714"/>
-        </scene>
-        <!--Item-->
-        <scene sceneID="3rP-yt-QQd">
-            <objects>
-                <navigationController id="3lV-J1-jef" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="zC2-zB-OBM"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="MMu-Hm-c9H">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Qfw-E9-3p6" kind="relationship" relationship="rootViewController" id="gxL-OM-rwQ"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="feQ-hC-axf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-757" y="33"/>
+            <point key="canvasLocation" x="3102.898550724638" y="-121.20535714285714"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="Dn9-bc-zSe">
@@ -193,14 +191,71 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="ihw-Wc-56D"/>
-                        <segue destination="jTQ-7L-BMd" kind="relationship" relationship="viewControllers" id="5jm-XV-Oie"/>
-                        <segue destination="EVM-mB-1aP" kind="relationship" relationship="viewControllers" id="KjX-Wn-waL"/>
+                        <segue destination="KCk-Fi-aGE" kind="relationship" relationship="viewControllers" id="J5y-Ys-KDc"/>
+                        <segue destination="Ubu-e0-kUY" kind="relationship" relationship="viewControllers" id="wXa-Of-9JH"/>
+                        <segue destination="PFW-Ey-jML" kind="relationship" relationship="viewControllers" id="tAC-0x-Hkn"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hP0-bm-kjm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="89.855072463768124" y="33.482142857142854"/>
+            <point key="canvasLocation" x="-549" y="33"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="TG7-6t-wRu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KCk-Fi-aGE" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" selectedImage="1.circle.fill" catalog="system" id="6Rp-cL-blx"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ROp-QD-pwh">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="gSE-UL-zc9"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kJT-Mo-NUT" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1276.8115942028987" y="-798.21428571428567"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="Cea-5m-d7I">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ubu-e0-kUY" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" selectedImage="folder.fill" catalog="system" id="s6Y-h2-WZG"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eq7-zb-CxW">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="jTQ-7L-BMd" kind="relationship" relationship="rootViewController" id="zgx-5M-Vhi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="y1b-Go-mjw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1276.8115942028987" y="-120.53571428571428"/>
+        </scene>
+        <!--Item-->
+        <scene sceneID="1Rj-Su-RV5">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PFW-Ey-jML" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" selectedImage="externaldrive.badge.person.crop" catalog="system" id="eAV-r1-nRg"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="eSk-mn-IOd">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="EVM-mB-1aP" kind="relationship" relationship="rootViewController" id="Be1-PR-3bb"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JfO-Yt-Mun" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1276.8115942028987" y="628.79464285714278"/>
         </scene>
     </scenes>
     <resources>

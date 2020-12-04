@@ -31,15 +31,27 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 1 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
   struct nib {
+    /// Nib `DownloadingVideosCell`.
+    static let downloadingVideosCell = _R.nib._DownloadingVideosCell()
     /// Nib `TopPageCell`.
     static let topPageCell = _R.nib._TopPageCell()
+    
+    /// `UINib(name: "DownloadingVideosCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.downloadingVideosCell) instead")
+    static func downloadingVideosCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.downloadingVideosCell)
+    }
     
     /// `UINib(name: "TopPageCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.topPageCell) instead")
     static func topPageCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.topPageCell)
+    }
+    
+    static func downloadingVideosCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DownloadingVideosCell? {
+      return R.nib.downloadingVideosCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DownloadingVideosCell
     }
     
     static func topPageCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TopPageCell? {
@@ -96,6 +108,17 @@ struct _R: Rswift.Validatable {
   }
   
   struct nib {
+    struct _DownloadingVideosCell: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "DownloadingVideosCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DownloadingVideosCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DownloadingVideosCell
+      }
+      
+      fileprivate init() {}
+    }
+    
     struct _TopPageCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
       typealias ReusableType = TopPageCell
       
@@ -134,15 +157,20 @@ struct _R: Rswift.Validatable {
     }
     
     struct main: Rswift.StoryboardResourceWithInitialControllerType, Rswift.Validatable {
-      typealias InitialController = UIKit.UINavigationController
+      typealias InitialController = UIKit.UITabBarController
       
       let browserViewController = StoryboardViewControllerResource<BrowserViewController>(identifier: "BrowserViewController")
       let bundle = R.hostingBundle
+      let downloadProcessViewController = StoryboardViewControllerResource<DownloadProcessViewController>(identifier: "DownloadProcessViewController")
       let name = "Main"
       let searchVideoViewController = StoryboardViewControllerResource<SearchVideoViewController>(identifier: "SearchVideoViewController")
       
       func browserViewController(_: Void = ()) -> BrowserViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: browserViewController)
+      }
+      
+      func downloadProcessViewController(_: Void = ()) -> DownloadProcessViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: downloadProcessViewController)
       }
       
       func searchVideoViewController(_: Void = ()) -> SearchVideoViewController? {
@@ -156,6 +184,7 @@ struct _R: Rswift.Validatable {
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.main().browserViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browserViewController' could not be loaded from storyboard 'Main' as 'BrowserViewController'.") }
+        if _R.storyboard.main().downloadProcessViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'downloadProcessViewController' could not be loaded from storyboard 'Main' as 'DownloadProcessViewController'.") }
         if _R.storyboard.main().searchVideoViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchVideoViewController' could not be loaded from storyboard 'Main' as 'SearchVideoViewController'.") }
       }
       
