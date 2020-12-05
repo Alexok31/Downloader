@@ -29,8 +29,7 @@ class BrowserConfigurator: BrowserConfiguratorType {
     }
     
     var interactor: BrowserInteractor {
-        let downloadService = DownloadService()
-        return BrowserInteractor(downloadService: downloadService)
+        return BrowserInteractor()
     }
     
 }

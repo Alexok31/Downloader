@@ -13,7 +13,16 @@ class DownloadingVideosCell: UITableViewCell {
     @IBOutlet weak var nameView: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var sizeVideo: UILabel!
-    @IBOutlet weak var speadDownload: UILabel!
+    @IBOutlet weak var speedDownload: UILabel!
+    
+    var model: DownloadProcessEntity? {
+        willSet(model) {
+            nameView.text = model?.nameFile
+            progressView.setProgress(Float(model?.percent ?? 0.0), animated: false)
+            sizeVideo.text = "\(model?.size ?? 0)"
+            speedDownload.text = model?.speedDownload
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

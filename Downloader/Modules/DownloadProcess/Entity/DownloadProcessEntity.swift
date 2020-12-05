@@ -7,10 +7,20 @@
 
 import Foundation
 
-struct DownloadProcessEntity {
-    var nameFile: String
-    var url: String
-    var size: Int
-    var percent: Double
+class DownloadProcessEntity {
+    var nameFile: String = ""
+    var url: String = ""
+    var size: Int = 0
+    var percent: Double = 0.0
+    var speedDownload: String?
     var urlFile: URL?
+    
+    init(nameFile: String, url: String, size: Int, percent: Double, speedDownload: String?, urlFile: URL?) {
+        self.nameFile = nameFile
+        self.url = url
+        self.size = size
+        self.percent = percent
+        self.speedDownload = speedDownload
+        self.urlFile = urlFile
+    }
 }

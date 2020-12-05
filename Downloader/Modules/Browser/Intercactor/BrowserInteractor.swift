@@ -8,7 +8,8 @@
 import RxSwift
 
 protocol BrowserInteractorType {
-    var downloadingVideos: PublishSubject<[DownloadProcessEntity]> { get }
+    var updateDownloadingVideos: PublishSubject<()>? { get }
+    var downloadingVideos: [DownloadProcessEntity]? { get }
     func startDownloadVideo(by urlVideo: String)
     func pauseDownload()
     func resumeDownload()
@@ -16,40 +17,34 @@ protocol BrowserInteractorType {
 
 class BrowserInteractor: BrowserInteractorType {
     
-    var downloadingVideos = PublishSubject<[DownloadProcessEntity]>.init()
+    var updateDownloadingVideos: PublishSubject<()>?
     
-    private var _downloadingVideos = [DownloadProcessEntity]() {
-        willSet(videos) {
-            downloadingVideos.onNext(videos)
-        }
+    var downloadingVideos: [DownloadProcessEntity]? {
+        return downloadControll?.downloadingVideos
     }
     
-    private var downloadService: DownloadControll
+    private var downloadControll: DownloadControll?
+    private var dispouseBag = DisposeBag()
     
-    init(downloadService: DownloadControll) {
-        self.downloadService = downloadService
+    init() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
+              let downloadControll = appDelegate.downloadControll else { return }
+        self.downloadControll = downloadControll
+        
+        updateDownloadingVideos?.subscribe(downloadControll.updateDownloadingVideos)
+            .disposed(by: dispouseBag)
     }
     
     func startDownloadVideo(by urlVideo: String) {
-        downloadService.downloadVideo(by: urlVideo) {
-            let video = DownloadProcessEntity(nameFile: "Video", url: urlVideo, size: 0, percent: 0, urlFile: nil)
-            self._downloadingVideos.append(video)
-        } progress: { (value) in
-            print(value)
-            var video = self._downloadingVideos.filter({$0.url == urlVideo}).first
-            video?.percent = value
-        } complition: { (fileUrl) in
-            var video = self._downloadingVideos.filter({$0.url == urlVideo}).first
-            video?.urlFile = fileUrl
-        }
+        downloadControll?.startDownloadVideo(by: urlVideo)
     }
     
     func pauseDownload() {
-        downloadService.stop()
+        downloadControll?.stop()
     }
     
     func resumeDownload() {
-        downloadService.resume()
+        downloadControll?.resume()
     }
     
 }

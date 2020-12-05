@@ -7,7 +7,7 @@
 
 import UIKit
 
-protocol DownloadProcessViewType {
+protocol DownloadProcessViewType: class {
     func reloadTableView()
     func reloadCell()
 }

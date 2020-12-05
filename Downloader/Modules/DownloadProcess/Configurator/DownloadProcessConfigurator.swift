@@ -14,9 +14,13 @@ protocol DownloadProcessConfiguratorType {
 class DownloadProcessConfigurator: DownloadProcessConfiguratorType {
     
     func configure(view: DownloadProcessViewController) {
-        let presenter = DownloadProcessPresenter()
+        let presenter = DownloadProcessPresenter(interactor: interactor, view: view)
         view.downloadingVideosTableView.delegate = presenter
         view.downloadingVideosTableView.dataSource = presenter
         view.presenter = presenter
+    }
+    
+    var interactor: DownloadProcessInteractorType {
+        return DownloadProcessInteractor()
     }
 }
