@@ -8,35 +8,35 @@
 import RxSwift
 
 protocol BrowserInteractorType {
-    var updateDownloadingVideos: PublishSubject<()>? { get }
-    var downloadingVideos: [DownloadProcessEntity]? { get }
-    func startDownloadVideo(by urlVideo: String)
+    var videoUrl: PublishSubject<VideoUrlEntity> { get }
+    var statusServer: PublishSubject<StatusServerResponse> { get }
+    var urlVideoBody: VideoUrlEntity? { get set }
+    func getUrlVideo(from request: URLRequest?)
+    func startDownloadVideo()
     func pauseDownload()
     func resumeDownload()
 }
 
 class BrowserInteractor: BrowserInteractorType {
     
-    var updateDownloadingVideos: PublishSubject<()>?
-    
-    var downloadingVideos: [DownloadProcessEntity]? {
-        return downloadControll?.downloadingVideos
-    }
+    var videoUrl = PublishSubject<VideoUrlEntity>.init()
+    var statusServer = PublishSubject<StatusServerResponse>.init()
+    var urlVideoBody: VideoUrlEntity?
     
     private var downloadControll: DownloadControll?
+    private var browseService: BrowseService
     private var dispouseBag = DisposeBag()
     
-    init() {
+    init(browseService: BrowseService) {
+        self.browseService = browseService
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
               let downloadControll = appDelegate.downloadControll else { return }
         self.downloadControll = downloadControll
-        
-        updateDownloadingVideos?.subscribe(downloadControll.updateDownloadingVideos)
-            .disposed(by: dispouseBag)
     }
     
-    func startDownloadVideo(by urlVideo: String) {
-        downloadControll?.startDownloadVideo(by: urlVideo)
+    func startDownloadVideo() {
+        guard let url = urlVideoBody?.download_link else {return}
+        downloadControll?.startDownloadVideo(by: url)
     }
     
     func pauseDownload() {
@@ -45,6 +45,17 @@ class BrowserInteractor: BrowserInteractorType {
     
     func resumeDownload() {
         downloadControll?.resume()
+    }
+    
+    func getUrlVideo(from request: URLRequest?) {
+        guard let url = request?.url?.absoluteString else {return}
+        browseService.getUrlVideo(from: url) { (statusServer, videoUrl) in
+            self.statusServer.onNext(statusServer)
+            if let videoUrl = videoUrl {
+                self.urlVideoBody = videoUrl
+                self.videoUrl.onNext(videoUrl)
+            }
+        }
     }
     
 }

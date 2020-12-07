@@ -29,7 +29,9 @@ class BrowserConfigurator: BrowserConfiguratorType {
     }
     
     var interactor: BrowserInteractor {
-        return BrowserInteractor()
+        let requestService = AlamofireBaseRequestService()
+        let browseService = BrowseService(requestService: requestService)
+        return BrowserInteractor(browseService: browseService)
     }
     
 }

@@ -9,5 +9,5 @@ import Foundation
 
 enum Constants {
     
-    static let baseUrl = "https://generaldata-79d9b.firebaseapp.com"
+    static let baseUrl = "https://gethisvideo.com"
 }

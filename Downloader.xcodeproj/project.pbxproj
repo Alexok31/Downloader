@@ -37,6 +37,8 @@
 		8ABB547C2575541800D4D90B /* SearchVideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB547B2575541800D4D90B /* SearchVideoPresenter.swift */; };
 		8ABB547F2575542800D4D90B /* SearchVideoConfiguratorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB547E2575542800D4D90B /* SearchVideoConfiguratorType.swift */; };
 		8ABB54862575551400D4D90B /* DataBaseServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB54852575551400D4D90B /* DataBaseServise.swift */; };
+		8AC0D3DE257EAA9F00A691B8 /* BrowseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC0D3DD257EAA9F00A691B8 /* BrowseService.swift */; };
+		8AC0D3E2257EACDB00A691B8 /* VideoUrlEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC0D3E1257EACDB00A691B8 /* VideoUrlEntity.swift */; };
 		8AFC77AB25756CFC00DF1FE9 /* SearchVideoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC77AA25756CFC00DF1FE9 /* SearchVideoRouter.swift */; };
 		8AFC77B32575830D00DF1FE9 /* TopPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC77B12575830D00DF1FE9 /* TopPageCell.swift */; };
 		8AFC77B42575830D00DF1FE9 /* TopPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFC77B22575830D00DF1FE9 /* TopPageCell.xib */; };
@@ -84,6 +86,8 @@
 		8ABB547B2575541800D4D90B /* SearchVideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVideoPresenter.swift; sourceTree = "<group>"; };
 		8ABB547E2575542800D4D90B /* SearchVideoConfiguratorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVideoConfiguratorType.swift; sourceTree = "<group>"; };
 		8ABB54852575551400D4D90B /* DataBaseServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseServise.swift; sourceTree = "<group>"; };
+		8AC0D3DD257EAA9F00A691B8 /* BrowseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseService.swift; sourceTree = "<group>"; };
+		8AC0D3E1257EACDB00A691B8 /* VideoUrlEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoUrlEntity.swift; sourceTree = "<group>"; };
 		8AFC77AA25756CFC00DF1FE9 /* SearchVideoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVideoRouter.swift; sourceTree = "<group>"; };
 		8AFC77B12575830D00DF1FE9 /* TopPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPageCell.swift; sourceTree = "<group>"; };
 		8AFC77B22575830D00DF1FE9 /* TopPageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopPageCell.xib; sourceTree = "<group>"; };
@@ -269,6 +273,7 @@
 				8A50FFC725753BF50084D97A /* BaseRequestService */,
 				8A50FFB1257539FC0084D97A /* Helpers */,
 				8A50FFCB25753CE50084D97A /* PagesService.swift */,
+				8AC0D3DD257EAA9F00A691B8 /* BrowseService.swift */,
 				8A50FFDA257549A90084D97A /* ApiManager.swift */,
 			);
 			path = Network;
@@ -470,6 +475,7 @@
 		8AFF503F25766EFD00A8BE0A /* Entity */ = {
 			isa = PBXGroup;
 			children = (
+				8AC0D3E1257EACDB00A691B8 /* VideoUrlEntity.swift */,
 			);
 			path = Entity;
 			sourceTree = "<group>";
@@ -653,6 +659,7 @@
 				8A123063257AD2DF00ADB83F /* DownloadingVideosCell.swift in Sources */,
 				8A50FFDB257549AA0084D97A /* ApiManager.swift in Sources */,
 				8A50FFC425753B040084D97A /* NetworkHelper.swift in Sources */,
+				8AC0D3E2257EACDB00A691B8 /* VideoUrlEntity.swift in Sources */,
 				8AFF50332575881C00A8BE0A /* TopPageInfo.swift in Sources */,
 				8AFF504C25766FAA00A8BE0A /* BrowserPresenter.swift in Sources */,
 				8AFF504F25766FC700A8BE0A /* BrowserInteractor.swift in Sources */,
@@ -669,6 +676,7 @@
 				8ABB547F2575542800D4D90B /* SearchVideoConfiguratorType.swift in Sources */,
 				8A50FFD025753D650084D97A /* Constants.swift in Sources */,
 				8A123056257ACFC400ADB83F /* DownloadProcessPresenter.swift in Sources */,
+				8AC0D3DE257EAA9F00A691B8 /* BrowseService.swift in Sources */,
 				8A123059257ACFEC00ADB83F /* DownloadProcessRouter.swift in Sources */,
 				8A50FFCC25753CE50084D97A /* PagesService.swift in Sources */,
 				8A123068257AD59500ADB83F /* UITableView+Extension.swift in Sources */,
