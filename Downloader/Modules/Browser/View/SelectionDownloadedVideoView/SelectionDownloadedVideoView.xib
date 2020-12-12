@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="SelectionDownloadedVideoView" customModule="Downloader" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="631" height="271"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="mxo-Vo-5UL" customClass="CustomImageView" customModule="Downloader" customModuleProvider="target">
+                    <rect key="frame" x="20" y="27" width="133.5" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="AbO-4n-tMe"/>
+                        <constraint firstAttribute="width" secondItem="mxo-Vo-5UL" secondAttribute="height" multiplier="2:1.5" id="eJE-d2-Ucr"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lhA-Hm-bpG">
+                    <rect key="frame" x="173.5" y="100" width="35.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rHS-e1-JtN">
+                    <rect key="frame" x="173.5" y="37" width="437.5" height="17"/>
+                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="K1b-ak-xXG">
+                    <rect key="frame" x="20" y="147" width="591" height="50"/>
+                    <color key="backgroundColor" red="0.42597339202789808" green="0.59894794307736166" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="nkR-l3-ieX"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
+                    <state key="normal" title="Download video">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <integer key="value" value="25"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="downloadAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="fTM-Py-K7c"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1AB-JF-ZRz">
+                    <rect key="frame" x="0.0" y="197" width="631" height="74"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="ynq-66-JEL"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="K1b-ak-xXG" firstAttribute="top" secondItem="mxo-Vo-5UL" secondAttribute="bottom" constant="20" id="AM9-dP-pnm"/>
+                <constraint firstAttribute="trailing" secondItem="K1b-ak-xXG" secondAttribute="trailing" constant="20" id="E8Y-8e-pbK"/>
+                <constraint firstItem="1AB-JF-ZRz" firstAttribute="top" secondItem="K1b-ak-xXG" secondAttribute="bottom" id="Elg-C6-JMF"/>
+                <constraint firstItem="rHS-e1-JtN" firstAttribute="leading" secondItem="mxo-Vo-5UL" secondAttribute="trailing" constant="20" id="FGy-HF-DgN"/>
+                <constraint firstItem="mxo-Vo-5UL" firstAttribute="leading" secondItem="K1b-ak-xXG" secondAttribute="leading" id="JtO-eW-ook"/>
+                <constraint firstItem="ynq-66-JEL" firstAttribute="bottom" secondItem="K1b-ak-xXG" secondAttribute="bottom" constant="40" id="Mnr-eU-OOX"/>
+                <constraint firstAttribute="trailing" secondItem="1AB-JF-ZRz" secondAttribute="trailing" id="ZYJ-Fd-b3T"/>
+                <constraint firstAttribute="bottom" secondItem="1AB-JF-ZRz" secondAttribute="bottom" id="a3j-Du-jWy"/>
+                <constraint firstItem="K1b-ak-xXG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="bPj-2b-JyV"/>
+                <constraint firstItem="rHS-e1-JtN" firstAttribute="top" secondItem="mxo-Vo-5UL" secondAttribute="top" constant="10" id="eA1-1I-KXg"/>
+                <constraint firstItem="mxo-Vo-5UL" firstAttribute="top" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="hJe-Yh-Vgo"/>
+                <constraint firstItem="lhA-Hm-bpG" firstAttribute="bottom" secondItem="mxo-Vo-5UL" secondAttribute="bottom" constant="-10" id="jht-2m-9u0"/>
+                <constraint firstItem="lhA-Hm-bpG" firstAttribute="leading" secondItem="rHS-e1-JtN" secondAttribute="leading" id="keo-Fj-Mxq"/>
+                <constraint firstItem="rHS-e1-JtN" firstAttribute="trailing" secondItem="K1b-ak-xXG" secondAttribute="trailing" id="p1P-t2-LL4"/>
+                <constraint firstItem="1AB-JF-ZRz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="pvZ-kF-EHd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                    <integer key="value" value="20"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="downloadButton" destination="K1b-ak-xXG" id="bgf-s2-E2t"/>
+                <outlet property="nameVideoLabel" destination="rHS-e1-JtN" id="VOy-4B-fOa"/>
+                <outlet property="previewImageView" destination="mxo-Vo-5UL" id="q5w-5l-HnV"/>
+                <outlet property="sizeVideoLabel" destination="lhA-Hm-bpG" id="ff0-S6-ICj"/>
+            </connections>
+            <point key="canvasLocation" x="180.43478260869566" y="116.85267857142857"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

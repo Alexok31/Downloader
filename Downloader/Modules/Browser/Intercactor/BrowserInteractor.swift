@@ -50,13 +50,24 @@ class BrowserInteractor: BrowserInteractorType {
     
     func getUrlVideo(from request: URLRequest?) {
         guard let url = request?.url?.absoluteString else {return}
-        browseService.getUrlVideo(from: url) { (statusServer, videoUrl) in
+        browseService.getUrlVideo(from: url) { (statusServer, videoUrlBody) in
             self.statusServer.onNext(statusServer)
-            if let videoUrl = videoUrl {
-                self.urlVideoBody = videoUrl
-                self.videoUrl.onNext(videoUrl)
+            if let videoUrlBody = videoUrlBody, let url = URL(string: videoUrlBody.download_link) {
+                self.urlVideoBody = videoUrlBody
+                self.videoUrl.onNext(videoUrlBody)
             }
         }
     }
     
+}
+
+import AVFoundation
+
+extension AVURLAsset {
+    var fileSize: Int? {
+        let keys: Set<URLResourceKey> = [.totalFileSizeKey, .fileSizeKey]
+        let resourceValues = try? url.resourceValues(forKeys: keys)
+
+        return resourceValues?.fileSize ?? resourceValues?.totalFileSize
+    }
 }

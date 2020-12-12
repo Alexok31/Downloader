@@ -144,15 +144,21 @@
                                 </wkWebViewConfiguration>
                             </wkWebView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkz-jo-03T">
-                                <rect key="frame" x="284" y="722" width="80" height="40"/>
-                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <rect key="frame" x="284" y="702" width="80" height="80"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="MoJ-SP-oNx"/>
+                                    <constraint firstAttribute="width" secondItem="lkz-jo-03T" secondAttribute="height" id="H1R-EX-keC"/>
                                     <constraint firstAttribute="width" constant="80" id="smT-Nc-gV6"/>
                                 </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <state key="normal" title="Download">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <integer key="value" value="40"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="downloadAction:" destination="2PW-UQ-lg4" eventType="touchUpInside" id="ZVy-gl-FKA"/>
                                 </connections>
@@ -164,7 +170,7 @@
                             <constraint firstAttribute="bottom" secondItem="Fmp-CO-zXR" secondAttribute="bottom" id="6tc-yr-r34"/>
                             <constraint firstItem="Fmp-CO-zXR" firstAttribute="trailing" secondItem="UYf-7j-pnA" secondAttribute="trailing" id="TQq-pt-c42"/>
                             <constraint firstItem="UYf-7j-pnA" firstAttribute="trailing" secondItem="lkz-jo-03T" secondAttribute="trailing" constant="50" id="Tqg-Iv-NON"/>
-                            <constraint firstItem="UYf-7j-pnA" firstAttribute="bottom" secondItem="lkz-jo-03T" secondAttribute="bottom" constant="100" id="ZlN-Rz-Ao4"/>
+                            <constraint firstItem="UYf-7j-pnA" firstAttribute="bottom" secondItem="lkz-jo-03T" secondAttribute="bottom" constant="80" id="ZlN-Rz-Ao4"/>
                             <constraint firstItem="Fmp-CO-zXR" firstAttribute="leading" secondItem="UYf-7j-pnA" secondAttribute="leading" id="poW-Dz-Azl"/>
                             <constraint firstItem="Fmp-CO-zXR" firstAttribute="top" secondItem="UYf-7j-pnA" secondAttribute="top" id="x0z-zf-rTq"/>
                         </constraints>

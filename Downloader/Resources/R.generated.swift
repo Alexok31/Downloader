@@ -31,10 +31,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 2 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
   struct nib {
     /// Nib `DownloadingVideosCell`.
     static let downloadingVideosCell = _R.nib._DownloadingVideosCell()
+    /// Nib `SelectionDownloadedVideoView`.
+    static let selectionDownloadedVideoView = _R.nib._SelectionDownloadedVideoView()
     /// Nib `TopPageCell`.
     static let topPageCell = _R.nib._TopPageCell()
     
@@ -42,6 +44,12 @@ struct R: Rswift.Validatable {
     @available(*, deprecated, message: "Use UINib(resource: R.nib.downloadingVideosCell) instead")
     static func downloadingVideosCell(_: Void = ()) -> UIKit.UINib {
       return UIKit.UINib(resource: R.nib.downloadingVideosCell)
+    }
+    
+    /// `UINib(name: "SelectionDownloadedVideoView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.selectionDownloadedVideoView) instead")
+    static func selectionDownloadedVideoView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.selectionDownloadedVideoView)
     }
     
     /// `UINib(name: "TopPageCell", in: bundle)`
@@ -52,6 +60,10 @@ struct R: Rswift.Validatable {
     
     static func downloadingVideosCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DownloadingVideosCell? {
       return R.nib.downloadingVideosCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DownloadingVideosCell
+    }
+    
+    static func selectionDownloadedVideoView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SelectionDownloadedVideoView? {
+      return R.nib.selectionDownloadedVideoView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SelectionDownloadedVideoView
     }
     
     static func topPageCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TopPageCell? {
@@ -114,6 +126,17 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DownloadingVideosCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DownloadingVideosCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _SelectionDownloadedVideoView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "SelectionDownloadedVideoView"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SelectionDownloadedVideoView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SelectionDownloadedVideoView
       }
       
       fileprivate init() {}

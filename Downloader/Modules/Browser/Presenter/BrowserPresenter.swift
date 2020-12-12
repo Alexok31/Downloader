@@ -11,6 +11,7 @@ import RxSwift
 protocol BrowserPresenterType {
     func viewDidLoad()
     func downloadAction()
+    func tapToDownloadButton()
 }
 
 class BrowserPresenter: NSObject, BrowserPresenterType {
@@ -27,6 +28,7 @@ class BrowserPresenter: NSObject, BrowserPresenterType {
         self.router = router
         super.init()
         observeVideoUrl()
+        tapToDownloadButton()
     }
     
     func viewDidLoad() {
@@ -40,18 +42,28 @@ class BrowserPresenter: NSObject, BrowserPresenterType {
         }
     }
     
-    func downloadAction() {
+    func tapToDownloadButton() {
         interactor.startDownloadVideo()
+        view?.hideDownloadedVideoView()
+    }
+    
+    func downloadAction() {
+        view?.showDownloadedVideoView()
     }
     
     func observeVideoUrl() {
-        interactor.videoUrl.subscribe { (videoUrlBody) in
-            print("link in redy")
+        interactor.videoUrl.subscribe { [weak self] (videoUrlBody) in
+            self?.view?.changeDownloadButtonState(isActive: true)
+            self?.setSelectionDownloadedVideoData()
         }.disposed(by: disposeBag)
     }
     
     func checkPage(from request: URLRequest?) {
         interactor.getUrlVideo(from: request)
+    }
+    
+    func setSelectionDownloadedVideoData() {
+        view?.selectionDownloadedVideoView?.model = interactor.urlVideoBody
     }
 }
 
