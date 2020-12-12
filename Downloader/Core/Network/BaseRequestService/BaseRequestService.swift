@@ -17,16 +17,3 @@ protocol BaseParameterPatch {
     var path: String { get }
     var parameters: [String: Any] { get }
 }
-
-
-extension Data {
-
-    func getDataModel<DataModel>(model: DataModel.Type) -> DataModel? where DataModel : Decodable {
-        do {
-            return try JSONDecoder().decode(model, from: self)
-        } catch {
-            return nil
-        }
-    }
-    
-}

@@ -46,7 +46,7 @@ extension ApiManager {
         case .getVideoUrl:
             return Constants.baseUrl + "/api/v1/link"
         case .topPages:
-            return "https://generaldata-79d9b.firebaseapp.com"
+            return "https://generaldata-79d9b.firebaseapp.com/youtube-dl/top_pages.json"
         }
     }
     

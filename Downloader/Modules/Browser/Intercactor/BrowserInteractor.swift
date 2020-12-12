@@ -36,7 +36,8 @@ class BrowserInteractor: BrowserInteractorType {
     
     func startDownloadVideo() {
         guard let url = urlVideoBody?.download_link else {return}
-        downloadControll?.startDownloadVideo(by: url)
+        let previewImage = urlVideoBody?.poster
+        downloadControll?.startDownloadVideo(by: url, previewImage: previewImage)
     }
     
     func pauseDownload() {

@@ -41,8 +41,8 @@ class DownloadProcessInteractor: DownloadProcessInteractorType {
             .disposed(by: disposeBag)
     }
     
-    func startDownloadVideo(by urlVideo: String) {
-        downloadControll?.startDownloadVideo(by: urlVideo)
+    func startDownloadVideo(by urlVideo: String, previewImage: String) {
+        downloadControll?.startDownloadVideo(by: urlVideo, previewImage: previewImage)
     }
     
     func pauseDownload() {

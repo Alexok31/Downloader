@@ -27,6 +27,10 @@ final class SearchVideoViewController: UIViewController {
         configurator.configure(viewController: self)
         presenter?.viewDidLoad()
     }
+    
+    override func viewWillLayoutSubviews() {
+        updateTopPagesHeigth()
+    }
    
     func configurUI() {
         topPageCollectioView.registerWithNib(cellClass: TopPageCell.self)
@@ -41,11 +45,17 @@ final class SearchVideoViewController: UIViewController {
 extension SearchVideoViewController: SearchVideoViewType {
     
     func updateTopPagesHeigth() {
-        topPageHeigth.constant = topPageCollectioView.contentSize.height
+        UIView.animate(withDuration: 0.5) { [weak self] in
+            guard let self = self else {return}
+            self.topPageHeigth.constant = self.topPageCollectioView.contentSize.height
+        }
+        
     }
     
     func reloadTopPages() {
-        topPageCollectioView.reloadData()
+        DispatchQueue.main.async {
+            self.topPageCollectioView.reloadData()
+        }
     }
 }
 
