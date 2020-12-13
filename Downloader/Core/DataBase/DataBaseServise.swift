@@ -8,9 +8,9 @@
 import RealmSwift
 
 protocol DataBaseServise {
-    func update(object: [Object])
-    func fetch(object: Object.Type) -> [Object]?
-    func addObserve(object: Object.Type, complition: @escaping([Object]?)->())
+    func save(object: [Object], isUpdate: Bool)
+    func fetch<object>(object: object.Type) -> [object]? where object: Object
+    func addObserve<object>(object: object.Type, complition: @escaping([object]?)->()) where object: Object
     func removeRealmNotificationToken()
 }
 
@@ -27,20 +27,25 @@ class RealmDataBaseServise: DataBaseServise {
         }
     }
     
-    func update(object: [Object]) {
+    func save(object: [Object], isUpdate: Bool) {
         realmWriteBlock { [weak self] in
-            self?.realm?.add(object, update: .modified)
+            if isUpdate {
+                self?.realm?.add(object, update: .modified)
+            } else {
+                self?.realm?.add(object)
+            }
+            
         }
     }
     
-    func fetch(object: Object.Type) -> [Object]? {
+    func fetch<object>(object: object.Type) -> [object]? where object: Object {
         guard let realm = realm else {return nil}
-        return Array(realm.objects(object.self))
+        return Array(realm.objects(object))
     }
     
-    func addObserve(object: Object.Type, complition: @escaping([Object]?)->()) {
+    func addObserve<object>(object: object.Type, complition: @escaping([object]?)->()) where object: Object {
         guard let realm = realm else { return }
-        notificationToken = realm.objects(object.self).observe { (change) in
+        notificationToken = realm.objects(object).observe { (change) in
             switch change {
             case .initial:
                 complition(self.fetch(object: object))

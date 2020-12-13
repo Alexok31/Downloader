@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		10CBB4567674210F2489268E /* Pods_Downloader.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD716C45133C67A7B979A1F /* Pods_Downloader.framework */; };
+		8A0630772586B6B70076BDF0 /* DownloadedVideosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0630762586B6B70076BDF0 /* DownloadedVideosViewController.swift */; };
+		8A06307E2586B6FF0076BDF0 /* DownloadedVideosInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A06307D2586B6FF0076BDF0 /* DownloadedVideosInteractor.swift */; };
+		8A0630822586B70B0076BDF0 /* DownloadedVideosPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0630812586B70B0076BDF0 /* DownloadedVideosPresenter.swift */; };
+		8A0630862586B7470076BDF0 /* DownloadedVideosConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A0630852586B7470076BDF0 /* DownloadedVideosConfigurator.swift */; };
 		8A123042257AC78400ADB83F /* DownloadService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A123041257AC78400ADB83F /* DownloadService.swift */; };
 		8A12304F257ACF8500ADB83F /* DownloadProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A12304E257ACF8500ADB83F /* DownloadProcessViewController.swift */; };
 		8A123053257ACFB800ADB83F /* DownloadProcessInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A123052257ACFB800ADB83F /* DownloadProcessInteractor.swift */; };
@@ -18,6 +22,7 @@
 		8A123064257AD2DF00ADB83F /* DownloadingVideosCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8A123062257AD2DF00ADB83F /* DownloadingVideosCell.xib */; };
 		8A123068257AD59500ADB83F /* UITableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A123067257AD59500ADB83F /* UITableView+Extension.swift */; };
 		8A12306B257AD61000ADB83F /* DownloadProcessConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A12306A257AD61000ADB83F /* DownloadProcessConfigurator.swift */; };
+		8A3C51D82586B8BD00F9B0C4 /* DownloadedVideosEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C51D72586B8BD00F9B0C4 /* DownloadedVideosEntity.swift */; };
 		8A411FC425753303000011B2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411FC325753303000011B2 /* AppDelegate.swift */; };
 		8A411FC625753303000011B2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411FC525753303000011B2 /* SceneDelegate.swift */; };
 		8A411FC825753303000011B2 /* SearchVideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A411FC725753303000011B2 /* SearchVideoViewController.swift */; };
@@ -42,6 +47,10 @@
 		8ABB54862575551400D4D90B /* DataBaseServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB54852575551400D4D90B /* DataBaseServise.swift */; };
 		8AC0D3DE257EAA9F00A691B8 /* BrowseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC0D3DD257EAA9F00A691B8 /* BrowseService.swift */; };
 		8AC0D3E2257EACDB00A691B8 /* VideoUrlEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC0D3E1257EACDB00A691B8 /* VideoUrlEntity.swift */; };
+		8AE5282E2586CEFF007E696D /* TableViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE5282D2586CEFF007E696D /* TableViewCellDelegate.swift */; };
+		8AE528322586D289007E696D /* UIViewController + Extension(Alert).swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE528312586D289007E696D /* UIViewController + Extension(Alert).swift */; };
+		8AE92AF22586C0EA007E5231 /* DownloadedVideosCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AE92AF02586C0EA007E5231 /* DownloadedVideosCell.swift */; };
+		8AE92AF32586C0EA007E5231 /* DownloadedVideosCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AE92AF12586C0EA007E5231 /* DownloadedVideosCell.xib */; };
 		8AFC77AB25756CFC00DF1FE9 /* SearchVideoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC77AA25756CFC00DF1FE9 /* SearchVideoRouter.swift */; };
 		8AFC77B32575830D00DF1FE9 /* TopPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AFC77B12575830D00DF1FE9 /* TopPageCell.swift */; };
 		8AFC77B42575830D00DF1FE9 /* TopPageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AFC77B22575830D00DF1FE9 /* TopPageCell.xib */; };
@@ -58,6 +67,10 @@
 /* Begin PBXFileReference section */
 		25526BE1B3F6E05F1C666A1F /* Pods-Downloader.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Downloader.debug.xcconfig"; path = "Target Support Files/Pods-Downloader/Pods-Downloader.debug.xcconfig"; sourceTree = "<group>"; };
 		7AD716C45133C67A7B979A1F /* Pods_Downloader.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Downloader.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A0630762586B6B70076BDF0 /* DownloadedVideosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedVideosViewController.swift; sourceTree = "<group>"; };
+		8A06307D2586B6FF0076BDF0 /* DownloadedVideosInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedVideosInteractor.swift; sourceTree = "<group>"; };
+		8A0630812586B70B0076BDF0 /* DownloadedVideosPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedVideosPresenter.swift; sourceTree = "<group>"; };
+		8A0630852586B7470076BDF0 /* DownloadedVideosConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedVideosConfigurator.swift; sourceTree = "<group>"; };
 		8A123041257AC78400ADB83F /* DownloadService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadService.swift; sourceTree = "<group>"; };
 		8A12304E257ACF8500ADB83F /* DownloadProcessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadProcessViewController.swift; sourceTree = "<group>"; };
 		8A123052257ACFB800ADB83F /* DownloadProcessInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadProcessInteractor.swift; sourceTree = "<group>"; };
@@ -68,6 +81,7 @@
 		8A123062257AD2DF00ADB83F /* DownloadingVideosCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadingVideosCell.xib; sourceTree = "<group>"; };
 		8A123067257AD59500ADB83F /* UITableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extension.swift"; sourceTree = "<group>"; };
 		8A12306A257AD61000ADB83F /* DownloadProcessConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadProcessConfigurator.swift; sourceTree = "<group>"; };
+		8A3C51D72586B8BD00F9B0C4 /* DownloadedVideosEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedVideosEntity.swift; sourceTree = "<group>"; };
 		8A411FC025753303000011B2 /* Downloader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Downloader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A411FC325753303000011B2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A411FC525753303000011B2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +108,10 @@
 		8ABB54852575551400D4D90B /* DataBaseServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseServise.swift; sourceTree = "<group>"; };
 		8AC0D3DD257EAA9F00A691B8 /* BrowseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseService.swift; sourceTree = "<group>"; };
 		8AC0D3E1257EACDB00A691B8 /* VideoUrlEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoUrlEntity.swift; sourceTree = "<group>"; };
+		8AE5282D2586CEFF007E696D /* TableViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellDelegate.swift; sourceTree = "<group>"; };
+		8AE528312586D289007E696D /* UIViewController + Extension(Alert).swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController + Extension(Alert).swift"; sourceTree = "<group>"; };
+		8AE92AF02586C0EA007E5231 /* DownloadedVideosCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadedVideosCell.swift; sourceTree = "<group>"; };
+		8AE92AF12586C0EA007E5231 /* DownloadedVideosCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadedVideosCell.xib; sourceTree = "<group>"; };
 		8AFC77AA25756CFC00DF1FE9 /* SearchVideoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVideoRouter.swift; sourceTree = "<group>"; };
 		8AFC77B12575830D00DF1FE9 /* TopPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPageCell.swift; sourceTree = "<group>"; };
 		8AFC77B22575830D00DF1FE9 /* TopPageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TopPageCell.xib; sourceTree = "<group>"; };
@@ -129,6 +147,62 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		8A0630712586B66D0076BDF0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8AE92AF52586C0EF007E5231 /* Cell */,
+				8A06307B2586B6D30076BDF0 /* Controller */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8A0630722586B6710076BDF0 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				8A3C51D72586B8BD00F9B0C4 /* DownloadedVideosEntity.swift */,
+			);
+			path = Entity;
+			sourceTree = "<group>";
+		};
+		8A0630732586B6790076BDF0 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				8A0630812586B70B0076BDF0 /* DownloadedVideosPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		8A0630742586B6850076BDF0 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				8A06307D2586B6FF0076BDF0 /* DownloadedVideosInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		8A0630752586B6910076BDF0 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		8A06307B2586B6D30076BDF0 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				8A0630762586B6B70076BDF0 /* DownloadedVideosViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		8A0630842586B7340076BDF0 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				8A0630852586B7470076BDF0 /* DownloadedVideosConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
 		8A123040257AC75F00ADB83F /* Download */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +228,12 @@
 		8A123046257ACEF100ADB83F /* DownloadedVideos */ = {
 			isa = PBXGroup;
 			children = (
+				8A0630842586B7340076BDF0 /* Configurator */,
+				8A0630712586B66D0076BDF0 /* View */,
+				8A0630742586B6850076BDF0 /* Interactor */,
+				8A0630732586B6790076BDF0 /* Presenter */,
+				8A0630722586B6710076BDF0 /* Entity */,
+				8A0630752586B6910076BDF0 /* Router */,
 			);
 			path = DownloadedVideos;
 			sourceTree = "<group>";
@@ -422,6 +502,23 @@
 			path = DataBase;
 			sourceTree = "<group>";
 		};
+		8AE5282C2586CEF1007E696D /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				8AE5282D2586CEFF007E696D /* TableViewCellDelegate.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		8AE92AF52586C0EF007E5231 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8AE92AF02586C0EA007E5231 /* DownloadedVideosCell.swift */,
+				8AE92AF12586C0EA007E5231 /* DownloadedVideosCell.xib */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
 		8AFC77A925756CE000DF1FE9 /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -450,6 +547,7 @@
 		8AFC77B7257584A100DF1FE9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				8AE5282C2586CEF1007E696D /* Protocols */,
 				8AFF5035257590E600A8BE0A /* CustiomUIElements */,
 				8AFC77B8257584AE00DF1FE9 /* Extension */,
 			);
@@ -462,6 +560,7 @@
 				8AFC77B9257584C700DF1FE9 /* UICollectionView+Extension.swift */,
 				8A123067257AD59500ADB83F /* UITableView+Extension.swift */,
 				8AB384132584D7D200B78265 /* Data + Extension.swift */,
+				8AE528312586D289007E696D /* UIViewController + Extension(Alert).swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -615,6 +714,7 @@
 				8AB3841A2585191800B78265 /* SelectionDownloadedVideoView.xib in Resources */,
 				8AFC77B42575830D00DF1FE9 /* TopPageCell.xib in Resources */,
 				8A123064257AD2DF00ADB83F /* DownloadingVideosCell.xib in Resources */,
+				8AE92AF32586C0EA007E5231 /* DownloadedVideosCell.xib in Resources */,
 				8A411FD025753305000011B2 /* LaunchScreen.storyboard in Resources */,
 				8A411FCD25753305000011B2 /* Assets.xcassets in Resources */,
 				8A411FCB25753303000011B2 /* Main.storyboard in Resources */,
@@ -691,19 +791,25 @@
 				8A50FFC025753A8D0084D97A /* BaseRequestService.swift in Sources */,
 				8ABB54782575540900D4D90B /* SearchVideoInteractor.swift in Sources */,
 				8A123063257AD2DF00ADB83F /* DownloadingVideosCell.swift in Sources */,
+				8A3C51D82586B8BD00F9B0C4 /* DownloadedVideosEntity.swift in Sources */,
 				8A50FFDB257549AA0084D97A /* ApiManager.swift in Sources */,
+				8A0630862586B7470076BDF0 /* DownloadedVideosConfigurator.swift in Sources */,
+				8AE5282E2586CEFF007E696D /* TableViewCellDelegate.swift in Sources */,
 				8A50FFC425753B040084D97A /* NetworkHelper.swift in Sources */,
 				8AC0D3E2257EACDB00A691B8 /* VideoUrlEntity.swift in Sources */,
 				8AB3841D25851D9400B78265 /* SelectionDownloadedVideoView.swift in Sources */,
 				8AFF50332575881C00A8BE0A /* TopPageInfo.swift in Sources */,
+				8AE92AF22586C0EA007E5231 /* DownloadedVideosCell.swift in Sources */,
 				8AFF504C25766FAA00A8BE0A /* BrowserPresenter.swift in Sources */,
 				8AFF504F25766FC700A8BE0A /* BrowserInteractor.swift in Sources */,
+				8AE528322586D289007E696D /* UIViewController + Extension(Alert).swift in Sources */,
 				8AFF504525766F6E00A8BE0A /* BrowserConfigurator.swift in Sources */,
 				8AB384142584D7D200B78265 /* Data + Extension.swift in Sources */,
 				8A12304F257ACF8500ADB83F /* DownloadProcessViewController.swift in Sources */,
 				8A411FC825753303000011B2 /* SearchVideoViewController.swift in Sources */,
 				8A12305D257AD16F00ADB83F /* DownloadProcessEntity.swift in Sources */,
 				8A411FC425753303000011B2 /* AppDelegate.swift in Sources */,
+				8A06307E2586B6FF0076BDF0 /* DownloadedVideosInteractor.swift in Sources */,
 				8ABB54862575551400D4D90B /* DataBaseServise.swift in Sources */,
 				8A50FFAA2575398E0084D97A /* StatusServerResponse.swift in Sources */,
 				8AFC77B32575830D00DF1FE9 /* TopPageCell.swift in Sources */,
@@ -711,8 +817,10 @@
 				8AFF5037257590FD00A8BE0A /* CustomImageView.swift in Sources */,
 				8ABB547F2575542800D4D90B /* SearchVideoConfiguratorType.swift in Sources */,
 				8A50FFD025753D650084D97A /* Constants.swift in Sources */,
+				8A0630772586B6B70076BDF0 /* DownloadedVideosViewController.swift in Sources */,
 				8A123056257ACFC400ADB83F /* DownloadProcessPresenter.swift in Sources */,
 				8AC0D3DE257EAA9F00A691B8 /* BrowseService.swift in Sources */,
+				8A0630822586B70B0076BDF0 /* DownloadedVideosPresenter.swift in Sources */,
 				8A123059257ACFEC00ADB83F /* DownloadProcessRouter.swift in Sources */,
 				8A50FFCC25753CE50084D97A /* PagesService.swift in Sources */,
 				8A123068257AD59500ADB83F /* UITableView+Extension.swift in Sources */,

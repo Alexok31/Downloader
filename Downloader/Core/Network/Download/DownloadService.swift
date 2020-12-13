@@ -7,9 +7,11 @@
 
 import Alamofire
 import RxSwift
+import AVFoundation
 
 protocol DownloadControll {
     var updateDownloadingVideos: PublishSubject<()> { get }
+    var fileDownloadComplete: PublishSubject<DownloadProcessEntity> { get }
     var downloadingVideos: [DownloadProcessEntity] { get }
     func startDownloadVideo(by videoUrl: String, previewImage: String?)
     func stop()
@@ -19,25 +21,28 @@ protocol DownloadControll {
 class DownloadService: DownloadControll {
     
     var updateDownloadingVideos = PublishSubject<()>.init()
+    var fileDownloadComplete = PublishSubject<DownloadProcessEntity>.init()
     
     var downloadingVideos = [DownloadProcessEntity]()
     
     private var request: Alamofire.Request?
     
     func startDownloadVideo(by urlVideo: String, previewImage: String?) {
-        guard !self.downloadingVideos.contains(where: {$0.url == urlVideo}) else { return }
+        guard !self.downloadingVideos.contains(where: {$0.urlLink == urlVideo}) else { return }
         downloadVideo(by: urlVideo) {
-            let video = DownloadProcessEntity(nameFile: "Video", url: urlVideo, size: "", percent: 0, speedDownload: "", urlFile: nil, previewImage: previewImage)
+            let video = DownloadProcessEntity(nameFile: "Video", urlLink: urlVideo, size: "", percent: 0, speedDownload: "", urlFile: "", previewImage: previewImage)
             self.downloadingVideos.append(video)
         } progress: { (value) in
-            let video = self.downloadingVideos.filter({$0.url == urlVideo}).first
-            video?.percent = value
-            self.updateDownloadingVideos.onNext(())
+            if let video = self.downloadingVideos.filter({$0.urlLink == urlVideo}).first {
+                video.percent = value
+                self.updateDownloadingVideos.onNext(())
+            }
         } complition: { (videoFileUrl, sizeVideo)   in
-            let video = self.downloadingVideos.filter({$0.url == urlVideo}).first
-            video?.urlFile = videoFileUrl
-            video?.size = sizeVideo
-            self.updateDownloadingVideos.onNext(())
+            if let video = self.downloadingVideos.filter({$0.urlLink == urlVideo}).first {
+                video.urlFile = videoFileUrl
+                video.size = sizeVideo
+                self.fileDownloadComplete.onNext(video)
+            }
         }
     }
     
@@ -52,7 +57,7 @@ class DownloadService: DownloadControll {
     private func downloadVideo(by videoUrl: String,
                        start: @escaping()->(),
                        progress: @escaping(Double)->(),
-                       complition: @escaping(URL, String)->()) {
+                       complition: @escaping(String, String)->()) {
         
         start()
         request = AF.request(videoUrl).downloadProgress(closure: { (progressDownload) in
@@ -67,12 +72,12 @@ class DownloadService: DownloadControll {
         }
     }
     
-    func seveAndGetVideoUrl(data: Data) -> URL? {
+    func seveAndGetVideoUrl(data: Data) -> String? {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let videoURL = documentsURL.appendingPathComponent("video.mp4")
         do {
             try data.write(to: videoURL)
-            return videoURL
+            return videoURL.absoluteString
         } catch {
             return nil
         }

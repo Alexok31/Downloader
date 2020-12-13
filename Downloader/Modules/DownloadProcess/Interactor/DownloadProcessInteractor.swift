@@ -28,12 +28,15 @@ class DownloadProcessInteractor: DownloadProcessInteractorType {
     }
     
     private var downloadControll: DownloadControll?
+    private var dataBaseService: DataBaseServise
     private var disposeBag = DisposeBag()
     
-    init() {
+    init(dataBaseService: DataBaseServise) {
+        self.dataBaseService = dataBaseService
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
         self.downloadControll = appDelegate?.downloadControll
         observeDownloadingVideos()
+        obseveFileDownloadComplete()
     }
     
     func observeDownloadingVideos() {
@@ -51,5 +54,21 @@ class DownloadProcessInteractor: DownloadProcessInteractorType {
     
     func resumeDownload() {
         downloadControll?.resume()
+    }
+    
+    private func obseveFileDownloadComplete() {
+        downloadControll?.fileDownloadComplete.subscribe(onNext: { [weak self] (downloadVideo) in
+            self?.saveDownloadFile(downloadVideo: downloadVideo)
+        }).disposed(by: disposeBag)
+    }
+    
+    private func saveDownloadFile(downloadVideo: DownloadProcessEntity) {
+        let videos = DownloadedVideosEntity()
+        videos.name = downloadVideo.nameFile
+        videos.urlLink = downloadVideo.urlLink
+        videos.previewImageLink = downloadVideo.previewImage ?? ""
+        videos.fileUrl = downloadVideo.urlFile
+        videos.size = downloadVideo.size
+        dataBaseService.save(object: [videos], isUpdate: false)
     }
 }

@@ -10,14 +10,14 @@ import UIKit
 class DownloadingVideosCell: UITableViewCell {
 
     @IBOutlet weak var previewVideo: CustomImageView!
-    @IBOutlet weak var nameView: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var sizeVideo: UILabel!
     @IBOutlet weak var speedDownload: UILabel!
     
     var model: DownloadProcessEntity? {
         willSet(model) {
-            nameView.text = model?.nameFile
+            nameLabel.text = model?.nameFile
             progressView.setProgress(Float(model?.percent ?? 0.0), animated: false)
             sizeVideo.text = model?.size
             speedDownload.text = model?.speedDownload

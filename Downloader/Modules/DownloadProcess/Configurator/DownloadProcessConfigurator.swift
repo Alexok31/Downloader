@@ -21,6 +21,6 @@ class DownloadProcessConfigurator: DownloadProcessConfiguratorType {
     }
     
     var interactor: DownloadProcessInteractorType {
-        return DownloadProcessInteractor()
+        return DownloadProcessInteractor(dataBaseService: RealmDataBaseServise())
     }
 }

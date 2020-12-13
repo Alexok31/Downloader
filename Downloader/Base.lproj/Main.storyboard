@@ -80,17 +80,32 @@
             </objects>
             <point key="canvasLocation" x="2186.9565217391305" y="-798.21428571428567"/>
         </scene>
-        <!--View Controller-->
+        <!--Downloaded Videos View Controller-->
         <scene sceneID="PaO-gC-Cbz">
             <objects>
-                <viewController id="EVM-mB-1aP" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DownloadedVideosViewController" id="EVM-mB-1aP" customClass="DownloadedVideosViewController" customModule="Downloader" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="uEV-Jw-ISu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zjk-A2-hKD">
+                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="tzI-KN-iHO"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="Zjk-A2-hKD" firstAttribute="top" secondItem="tzI-KN-iHO" secondAttribute="top" id="JB7-yZ-uKa"/>
+                            <constraint firstItem="Zjk-A2-hKD" firstAttribute="leading" secondItem="tzI-KN-iHO" secondAttribute="leading" id="OJl-Op-nfT"/>
+                            <constraint firstItem="tzI-KN-iHO" firstAttribute="trailing" secondItem="Zjk-A2-hKD" secondAttribute="trailing" id="T1O-rt-c7E"/>
+                            <constraint firstItem="tzI-KN-iHO" firstAttribute="bottom" secondItem="Zjk-A2-hKD" secondAttribute="bottom" id="p1X-zC-mZs"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="E04-4L-x9o"/>
+                    <connections>
+                        <outlet property="downloadedVideosTableView" destination="Zjk-A2-hKD" id="YIU-eM-68U"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HnZ-gH-1yn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

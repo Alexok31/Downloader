@@ -28,8 +28,7 @@ class SearchVideoInteractor: SearchVideoInteractorType {
     }
     
     var topPages: TopPagesEntity? {
-        let object = dataBaseServise.fetch(object: TopPageEntity.self)
-        return object as? TopPagesEntity
+        return dataBaseServise.fetch(object: TopPageEntity.self)
     }
     
     var topPagesCount: Int {
@@ -53,8 +52,8 @@ class SearchVideoInteractor: SearchVideoInteractorType {
     }
     
     func observeTopPages(complition: @escaping(TopPagesEntity)->()) {
-        dataBaseServise.addObserve(object: TopPageEntity.self) { (objects) in
-            if let objects = objects, let topPages = objects as? TopPagesEntity {
+        dataBaseServise.addObserve(object: TopPageEntity.self) { (topPages) in
+            if let topPages = topPages {
                 complition(topPages)
             }
         }
@@ -66,7 +65,7 @@ class SearchVideoInteractor: SearchVideoInteractorType {
     
     private func saveTopPages(pages: TopPagesEntity?) {
         guard let topPages = pages else { return }
-        self.dataBaseServise.update(object: topPages)
+        self.dataBaseServise.save(object: topPages, isUpdate: true)
     }
     
 }

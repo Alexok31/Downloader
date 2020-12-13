@@ -31,14 +31,22 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 3 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
   struct nib {
+    /// Nib `DownloadedVideosCell`.
+    static let downloadedVideosCell = _R.nib._DownloadedVideosCell()
     /// Nib `DownloadingVideosCell`.
     static let downloadingVideosCell = _R.nib._DownloadingVideosCell()
     /// Nib `SelectionDownloadedVideoView`.
     static let selectionDownloadedVideoView = _R.nib._SelectionDownloadedVideoView()
     /// Nib `TopPageCell`.
     static let topPageCell = _R.nib._TopPageCell()
+    
+    /// `UINib(name: "DownloadedVideosCell", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.downloadedVideosCell) instead")
+    static func downloadedVideosCell(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.downloadedVideosCell)
+    }
     
     /// `UINib(name: "DownloadingVideosCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.downloadingVideosCell) instead")
@@ -58,6 +66,10 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.topPageCell)
     }
     
+    static func downloadedVideosCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DownloadedVideosCell? {
+      return R.nib.downloadedVideosCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DownloadedVideosCell
+    }
+    
     static func downloadingVideosCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DownloadingVideosCell? {
       return R.nib.downloadingVideosCell.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DownloadingVideosCell
     }
@@ -73,8 +85,12 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
-  /// This `R.reuseIdentifier` struct is generated, and contains static references to 1 reuse identifiers.
+  /// This `R.reuseIdentifier` struct is generated, and contains static references to 3 reuse identifiers.
   struct reuseIdentifier {
+    /// Reuse identifier `DownloadedVideosCell`.
+    static let downloadedVideosCell: Rswift.ReuseIdentifier<DownloadedVideosCell> = Rswift.ReuseIdentifier(identifier: "DownloadedVideosCell")
+    /// Reuse identifier `DownloadingVideosCell`.
+    static let downloadingVideosCell: Rswift.ReuseIdentifier<DownloadingVideosCell> = Rswift.ReuseIdentifier(identifier: "DownloadingVideosCell")
     /// Reuse identifier `TopPageCell`.
     static let topPageCell: Rswift.ReuseIdentifier<TopPageCell> = Rswift.ReuseIdentifier(identifier: "TopPageCell")
     
@@ -120,8 +136,25 @@ struct _R: Rswift.Validatable {
   }
   
   struct nib {
-    struct _DownloadingVideosCell: Rswift.NibResourceType {
+    struct _DownloadedVideosCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = DownloadedVideosCell
+      
       let bundle = R.hostingBundle
+      let identifier = "DownloadedVideosCell"
+      let name = "DownloadedVideosCell"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DownloadedVideosCell? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DownloadedVideosCell
+      }
+      
+      fileprivate init() {}
+    }
+    
+    struct _DownloadingVideosCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+      typealias ReusableType = DownloadingVideosCell
+      
+      let bundle = R.hostingBundle
+      let identifier = "DownloadingVideosCell"
       let name = "DownloadingVideosCell"
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DownloadingVideosCell? {
@@ -185,6 +218,7 @@ struct _R: Rswift.Validatable {
       let browserViewController = StoryboardViewControllerResource<BrowserViewController>(identifier: "BrowserViewController")
       let bundle = R.hostingBundle
       let downloadProcessViewController = StoryboardViewControllerResource<DownloadProcessViewController>(identifier: "DownloadProcessViewController")
+      let downloadedVideosViewController = StoryboardViewControllerResource<DownloadedVideosViewController>(identifier: "DownloadedVideosViewController")
       let name = "Main"
       let searchVideoViewController = StoryboardViewControllerResource<SearchVideoViewController>(identifier: "SearchVideoViewController")
       
@@ -194,6 +228,10 @@ struct _R: Rswift.Validatable {
       
       func downloadProcessViewController(_: Void = ()) -> DownloadProcessViewController? {
         return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: downloadProcessViewController)
+      }
+      
+      func downloadedVideosViewController(_: Void = ()) -> DownloadedVideosViewController? {
+        return UIKit.UIStoryboard(resource: self).instantiateViewController(withResource: downloadedVideosViewController)
       }
       
       func searchVideoViewController(_: Void = ()) -> SearchVideoViewController? {
@@ -208,6 +246,7 @@ struct _R: Rswift.Validatable {
         }
         if _R.storyboard.main().browserViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browserViewController' could not be loaded from storyboard 'Main' as 'BrowserViewController'.") }
         if _R.storyboard.main().downloadProcessViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'downloadProcessViewController' could not be loaded from storyboard 'Main' as 'DownloadProcessViewController'.") }
+        if _R.storyboard.main().downloadedVideosViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'downloadedVideosViewController' could not be loaded from storyboard 'Main' as 'DownloadedVideosViewController'.") }
         if _R.storyboard.main().searchVideoViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'searchVideoViewController' could not be loaded from storyboard 'Main' as 'SearchVideoViewController'.") }
       }
       
