@@ -31,8 +31,8 @@ class DownloadedVideosPresenter: NSObject, DownloadedVideosPresenterType {
         }
     }
     
-    private func saveVideoToGallery(urlString: String) {
-        interactor.saveVideoToGallery(videoPathString: urlString) { [weak self] in
+    private func saveVideoToGallery(nameVideo: String) {
+        interactor.saveVideoToGallery(nameVideo: nameVideo) { [weak self] in
             self?.view?.showVideoSavedAlert()
         } failure: { [weak self] (error) in
             self?.view?.showVideoSavingErrorAlert(message: error.localizedDescription)
@@ -61,8 +61,8 @@ extension DownloadedVideosPresenter: UITableViewDelegate, UITableViewDataSource,
     
     func tableViewCell(_ cell: UITableViewCell, buttonTapped: UIButton) {
         guard let indexPath = view?.downloadedVideosTableView.indexPath(for: cell),
-              let urlFileVideo = interactor.downloadedVideo(for: indexPath)?.fileUrl else {return}
-        saveVideoToGallery(urlString: urlFileVideo)
+              let name = interactor.downloadedVideo(for: indexPath)?.name else {return}
+        saveVideoToGallery(nameVideo: name)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

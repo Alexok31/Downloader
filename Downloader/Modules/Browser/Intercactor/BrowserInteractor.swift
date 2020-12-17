@@ -12,7 +12,7 @@ protocol BrowserInteractorType {
     var statusServer: PublishSubject<StatusServerResponse> { get }
     var urlVideoBody: VideoUrlEntity? { get set }
     func getUrlVideo(from request: URLRequest?)
-    func startDownloadVideo()
+    func startDownloadVideo(name: String?)
     func pauseDownload()
     func resumeDownload()
 }
@@ -34,10 +34,11 @@ class BrowserInteractor: BrowserInteractorType {
         self.downloadControll = downloadControll
     }
     
-    func startDownloadVideo() {
+    func startDownloadVideo(name: String?) {
         guard let url = urlVideoBody?.download_link else {return}
         let previewImage = urlVideoBody?.poster
-        downloadControll?.startDownloadVideo(by: url, previewImage: previewImage)
+        let videoName = setVideoName(name: name)
+        downloadControll?.startDownloadVideo(by: url, previewImage: previewImage, name: videoName)
     }
     
     func pauseDownload() {
@@ -57,6 +58,16 @@ class BrowserInteractor: BrowserInteractorType {
                 self.videoUrl.onNext(videoUrlBody)
             }
         }
+    }
+    
+    private func setVideoName(name: String?) -> String {
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "yyyy_MM_dd-HHmmssSS"
+        let dateString = dateFormater.string(from: Date())
+        if let name = name {
+            return "\(name)_\(dateString).mp4"
+        }
+        return "DownloaderVideo_\(dateString).mp4"
     }
     
 }

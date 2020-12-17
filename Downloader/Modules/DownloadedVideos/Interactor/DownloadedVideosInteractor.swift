@@ -14,7 +14,7 @@ protocol DownloadedVideosInteractorType {
     var downloadedVideosCount: Int { get }
     func observeDownloadedVideos(complition: @escaping([DownloadedVideosEntity])->())
     func removeObserveDownloadedVideos()
-    func saveVideoToGallery(videoPathString: String, success: @escaping ()->(), failure: @escaping (Error)->())
+    func saveVideoToGallery(nameVideo: String, success: @escaping ()->(), failure: @escaping (Error)->())
 }
  
 class DownloadedVideosInteractor: DownloadedVideosInteractorType {
@@ -49,11 +49,13 @@ class DownloadedVideosInteractor: DownloadedVideosInteractorType {
         dataBaseService.removeRealmNotificationToken()
     }
     
-    func saveVideoToGallery(videoPathString: String, success: @escaping ()->(), failure: @escaping (Error)->()) {
-        let url = URL(fileURLWithPath: videoPathString)
+    func saveVideoToGallery(nameVideo: String, success: @escaping ()->(), failure: @escaping (Error)->()) {
+        
         DispatchQueue.main.async {
+            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+            let videoURL = documentsURL.appendingPathComponent(nameVideo)
             PHPhotoLibrary.shared().performChanges({
-                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: url)
+                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
             }) { saved, error in
                 if let error = error {
                     failure(error)

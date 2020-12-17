@@ -43,7 +43,7 @@ class BrowserPresenter: NSObject, BrowserPresenterType {
     }
     
     func tapToDownloadButton() {
-        interactor.startDownloadVideo()
+        interactor.startDownloadVideo(name: nil)
         view?.hideDownloadedVideoView()
     }
     
