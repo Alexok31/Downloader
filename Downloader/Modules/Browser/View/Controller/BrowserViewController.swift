@@ -32,9 +32,14 @@ class BrowserViewController: UIViewController, BrowserViewType {
         super.viewDidLoad()
         configurator?.configure(viewController: self)
         presenter?.viewDidLoad()
-        setupDownloadedVideoView()
+        configUI()
         webKitView.addObserver(self, forKeyPath: "URL", options: [.new, .old], context: nil)
         tapToDownloadButton()
+    }
+    
+    func configUI() {
+        title = "Browser"
+        setupDownloadedVideoView()
     }
     
     func loadWebPage(request: URLRequest) {

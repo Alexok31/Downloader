@@ -7,16 +7,6 @@
 
 import RxSwift
 
-protocol SearchVideoInteractorType {
-    var topPages: TopPagesEntity? { get }
-    var topPagesCount: Int { get }
-    func updateTopPages()
-    func topPageInfo(for indexPath: IndexPath) -> TopPageInfo?
-    func tapToTopPageLink(for indexPath: IndexPath) -> String?
-    func observeTopPages(complition: @escaping(TopPagesEntity)->())
-    func removeObserve()
-}
-
 class SearchVideoInteractor: SearchVideoInteractorType {
     
     private var pagesService: PagesServiceType

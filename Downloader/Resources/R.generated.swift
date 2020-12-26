@@ -239,9 +239,11 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
-        if UIKit.UIImage(named: "1.circle.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named '1.circle.fill' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "externaldrive.badge.person.crop", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'externaldrive.badge.person.crop' is used in storyboard 'Main', but couldn't be loaded.") }
-        if UIKit.UIImage(named: "folder.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'folder.fill' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "externaldrive", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'externaldrive' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "externaldrive.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'externaldrive.fill' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "magnifyingglass", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'magnifyingglass' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "video", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'video' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "video.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'video.fill' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
         if _R.storyboard.main().browserViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browserViewController' could not be loaded from storyboard 'Main' as 'BrowserViewController'.") }

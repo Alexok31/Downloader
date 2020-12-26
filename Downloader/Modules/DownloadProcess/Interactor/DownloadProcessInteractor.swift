@@ -58,17 +58,8 @@ class DownloadProcessInteractor: DownloadProcessInteractorType {
     
     private func obseveFileDownloadComplete() {
         downloadControll?.fileDownloadComplete.subscribe(onNext: { [weak self] (downloadVideo) in
-            self?.saveDownloadFile(downloadVideo: downloadVideo)
+            
+            //self?.saveDownloadFile(downloadVideo: downloadVideo)
         }).disposed(by: disposeBag)
-    }
-    
-    private func saveDownloadFile(downloadVideo: DownloadProcessEntity) {
-        let videos = DownloadedVideosEntity()
-        videos.name = downloadVideo.nameFile
-        videos.urlLink = downloadVideo.urlLink
-        videos.previewImageLink = downloadVideo.previewImage ?? ""
-        videos.fileUrl = downloadVideo.urlFile
-        videos.size = downloadVideo.size
-        dataBaseService.save(object: [videos], isUpdate: false)
     }
 }

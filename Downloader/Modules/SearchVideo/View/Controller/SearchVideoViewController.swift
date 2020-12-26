@@ -7,11 +7,6 @@
 
 import UIKit
 
-protocol SearchVideoViewType: class {
-    func reloadTopPages()
-    func updateTopPagesHeigth()
-}
-
 final class SearchVideoViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
@@ -33,6 +28,7 @@ final class SearchVideoViewController: UIViewController {
     }
    
     func configurUI() {
+        title = "Search"
         topPageCollectioView.registerWithNib(cellClass: TopPageCell.self)
     }
     

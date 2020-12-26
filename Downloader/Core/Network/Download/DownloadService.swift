@@ -26,6 +26,7 @@ class DownloadService: DownloadControll {
     var downloadingVideos = [DownloadProcessEntity]()
     
     private var request: Alamofire.Request?
+    private var dataBaseService = RealmDataBaseServise()
     
     func startDownloadVideo(by urlVideo: String, previewImage: String?, name: String) {
         guard !self.downloadingVideos.contains(where: {$0.nameFile == name}) else { return }
@@ -41,6 +42,7 @@ class DownloadService: DownloadControll {
             if let video = self.downloadingVideos.filter({$0.nameFile == name}).first {
                 video.urlFile = videoFileUrl
                 video.size = sizeVideo
+                self.saveDownloadFile(downloadVideo: video)
                 self.fileDownloadComplete.onNext(video)
             }
         }
@@ -72,7 +74,7 @@ class DownloadService: DownloadControll {
         }
     }
     
-    func seveAndGetVideoUrl(name: String, data: Data) -> String? {
+    private func seveAndGetVideoUrl(name: String, data: Data) -> String? {
         let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
         let videoURL = documentsURL.appendingPathComponent(name)
         do {
@@ -81,5 +83,16 @@ class DownloadService: DownloadControll {
         } catch {
             return nil
         }
+    }
+    
+    private func saveDownloadFile(downloadVideo: DownloadProcessEntity) {
+        let videos = DownloadedVideosEntity()
+        videos.name = downloadVideo.nameFile
+        videos.urlLink = downloadVideo.urlLink
+        videos.previewImageLink = downloadVideo.previewImage ?? ""
+        videos.fileUrl = downloadVideo.urlFile
+        videos.size = downloadVideo.size
+        dataBaseService.save(object: [videos], isUpdate: false)
+        print("Video saved")
     }
 }

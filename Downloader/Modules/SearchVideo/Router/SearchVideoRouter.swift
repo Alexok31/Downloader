@@ -7,19 +7,19 @@
 
 import Foundation
 
-protocol SearchVideoRouterType {
-    func openBrowser(urlString: String)
-}
-
 class SearchVideoRouter: SearchVideoRouterType {
     
     weak var view: SearchVideoViewType?
     
+    init(view: SearchVideoViewType) {
+        self.view = view
+    }
+    
     func openBrowser(urlString: String) {
-        guard let viewCcontroller = view as? SearchVideoViewController,
+        guard let viewController = view as? SearchVideoViewController,
               let browse = R.storyboard.main.browserViewController() else {return}
         browse.configurator = BrowserConfigurator(urlString: urlString)
-        viewCcontroller.navigationController?.pushViewController(browse, animated: true)
+        viewController.navigationController?.pushViewController(browse, animated: true)
     }
     
 }

@@ -22,6 +22,7 @@ class DownloadedVideosPresenter: NSObject, DownloadedVideosPresenterType {
     }
     
     func viewDidLoad() {
+        view?.reloadeDownloadedVideos()
         observeDownloadedVideos()
     }
     

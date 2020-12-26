@@ -37,6 +37,7 @@
 		8A50FFD025753D650084D97A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFCF25753D650084D97A /* Constants.swift */; };
 		8A50FFD52575451F0084D97A /* TopPagesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFD42575451F0084D97A /* TopPagesEntity.swift */; };
 		8A50FFDB257549AA0084D97A /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFDA257549A90084D97A /* ApiManager.swift */; };
+		8A934B7E2595D536002B1FA2 /* SearchVideoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A934B7D2595D536002B1FA2 /* SearchVideoProtocols.swift */; };
 		8A9EF85F257538300046E545 /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9EF85E257538300046E545 /* R.generated.swift */; };
 		8AB384142584D7D200B78265 /* Data + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AB384132584D7D200B78265 /* Data + Extension.swift */; };
 		8AB3841A2585191800B78265 /* SelectionDownloadedVideoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8AB384192585191800B78265 /* SelectionDownloadedVideoView.xib */; };
@@ -98,6 +99,7 @@
 		8A50FFCF25753D650084D97A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8A50FFD42575451F0084D97A /* TopPagesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPagesEntity.swift; sourceTree = "<group>"; };
 		8A50FFDA257549A90084D97A /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		8A934B7D2595D536002B1FA2 /* SearchVideoProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVideoProtocols.swift; sourceTree = "<group>"; };
 		8A9EF85E257538300046E545 /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = "<group>"; };
 		8AB384132584D7D200B78265 /* Data + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data + Extension.swift"; sourceTree = "<group>"; };
 		8AB384192585191800B78265 /* SelectionDownloadedVideoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectionDownloadedVideoView.xib; sourceTree = "<group>"; };
@@ -241,8 +243,8 @@
 		8A123047257ACF0600ADB83F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8A123060257AD2C400ADB83F /* Cell */,
 				8A12304D257ACF6800ADB83F /* Controller */,
+				8A123060257AD2C400ADB83F /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -387,8 +389,8 @@
 			isa = PBXGroup;
 			children = (
 				8ABB546F257553B600D4D90B /* SearchVideo */,
-				8A123046257ACEF100ADB83F /* DownloadedVideos */,
 				8A123045257ACEB400ADB83F /* DownloadProcess */,
+				8A123046257ACEF100ADB83F /* DownloadedVideos */,
 				8AFF503B25766E7E00A8BE0A /* Browser */,
 			);
 			path = Modules;
@@ -481,8 +483,8 @@
 		8ABB5474257553DF00D4D90B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8AFC77B0257582EB00DF1FE9 /* Cell */,
 				8AFC77AF257582E400DF1FE9 /* Controller */,
+				8AFC77B0257582EB00DF1FE9 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -490,6 +492,7 @@
 		8ABB5475257553E900D4D90B /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
+				8A934B7D2595D536002B1FA2 /* SearchVideoProtocols.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -598,8 +601,8 @@
 		8AFF503E25766EF900A8BE0A /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8AB384182585125F00B78265 /* SelectionDownloadedVideoView */,
 				8AB3841F25851F0400B78265 /* Controller */,
+				8AB384182585125F00B78265 /* SelectionDownloadedVideoView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -811,6 +814,7 @@
 				8A411FC425753303000011B2 /* AppDelegate.swift in Sources */,
 				8A06307E2586B6FF0076BDF0 /* DownloadedVideosInteractor.swift in Sources */,
 				8ABB54862575551400D4D90B /* DataBaseServise.swift in Sources */,
+				8A934B7E2595D536002B1FA2 /* SearchVideoProtocols.swift in Sources */,
 				8A50FFAA2575398E0084D97A /* StatusServerResponse.swift in Sources */,
 				8AFC77B32575830D00DF1FE9 /* TopPageCell.swift in Sources */,
 				8A123053257ACFB800ADB83F /* DownloadProcessInteractor.swift in Sources */,

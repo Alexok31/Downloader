@@ -22,10 +22,12 @@ class DownloadProcessViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(view: self)
+        presenter?.viewDidLoad()
         configUI()
     }
     
     func configUI() {
+        title = "Process"
         downloadingVideosTableView.registerWithNib(cellClass: DownloadingVideosCell.self)
     }
 }

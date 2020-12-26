@@ -24,11 +24,12 @@ class DownloadedVideosViewController: UIViewController, DownloadedVideosViewType
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configure(view: self)
-        configurareUI()
+        configUI()
         presenter?.viewDidLoad()
     }
     
-    func configurareUI() {
+    func configUI() {
+        title = "Download"
         downloadedVideosTableView.registerWithNib(cellClass: DownloadedVideosCell.self)
     }
     

@@ -45,6 +45,12 @@ class BrowserPresenter: NSObject, BrowserPresenterType {
     func tapToDownloadButton() {
         interactor.startDownloadVideo(name: nil)
         view?.hideDownloadedVideoView()
+        setBadge(value: "1")
+    }
+    
+    func setBadge(value: String) {
+        let viewController = view as? UIViewController
+        viewController?.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = value
     }
     
     func downloadAction() {

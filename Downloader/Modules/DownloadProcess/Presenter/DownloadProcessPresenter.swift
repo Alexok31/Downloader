@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 protocol DownloadProcessPresenterType: UITableViewDelegate, UITableViewDataSource {
-    
+    func viewDidLoad()
     
 }
 
@@ -27,13 +27,25 @@ class DownloadProcessPresenter: NSObject, DownloadProcessPresenterType {
         observeUpdateDownloadingFiles()
     }
     
-    func observeUpdateDownloadingFiles() {
+    func viewDidLoad() {
+        resetBadge()
+    }
+    
+    
+    private func resetBadge() {
+        let viewController = view as? UIViewController
+        viewController?.tabBarItem.badgeValue?.removeAll()
+    }
+    
+    private func observeUpdateDownloadingFiles() {
         interactor.updateDownloadingFiles.subscribe { (_) in
             self.view?.reloadTableView()
         }.disposed(by: disposeBag)
 
     }
-    
+}
+
+extension DownloadProcessPresenter {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor.downloadingFilesCounts
     }

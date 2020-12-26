@@ -7,19 +7,13 @@
 
 import UIKit
 
-protocol SearchVideoPresenterType: class {
-    func viewDidLoad()
-    func howToDownloadAction()
-}
-
-
 class SearchVideoPresenter: NSObject, SearchVideoPresenterType {
     
     var interactor: SearchVideoInteractorType
     var router: SearchVideoRouterType
     weak var view: SearchVideoViewType?
     
-    init(interactor: SearchVideoInteractorType, router: SearchVideoRouterType) {
+    init(view: SearchVideoViewType, interactor: SearchVideoInteractorType, router: SearchVideoRouterType) {
         self.interactor = interactor
         self.router = router
     }

@@ -35,9 +35,9 @@ class BrowserInteractor: BrowserInteractorType {
     }
     
     func startDownloadVideo(name: String?) {
-        guard let url = urlVideoBody?.download_link else {return}
+        guard let url = urlVideoBody?.download_link, let fileExtension = urlVideoBody?.ext else {return}
         let previewImage = urlVideoBody?.poster
-        let videoName = setVideoName(name: name)
+        let videoName = setVideoName(name: name, fileExtension: fileExtension)
         downloadControll?.startDownloadVideo(by: url, previewImage: previewImage, name: videoName)
     }
     
@@ -53,21 +53,21 @@ class BrowserInteractor: BrowserInteractorType {
         guard let url = request?.url?.absoluteString else {return}
         browseService.getUrlVideo(from: url) { (statusServer, videoUrlBody) in
             self.statusServer.onNext(statusServer)
-            if let videoUrlBody = videoUrlBody, let url = URL(string: videoUrlBody.download_link) {
+            if let videoUrlBody = videoUrlBody, let url = URL(string: videoUrlBody.download_link ?? "") {
                 self.urlVideoBody = videoUrlBody
                 self.videoUrl.onNext(videoUrlBody)
             }
         }
     }
     
-    private func setVideoName(name: String?) -> String {
+    private func setVideoName(name: String?, fileExtension: String) -> String {
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = "yyyy_MM_dd-HHmmssSS"
         let dateString = dateFormater.string(from: Date())
         if let name = name {
             return "\(name)_\(dateString).mp4"
         }
-        return "DownloaderVideo_\(dateString).mp4"
+        return "DownloaderVideo_\(dateString).\(fileExtension)"
     }
     
 }

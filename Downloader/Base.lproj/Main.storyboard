@@ -221,11 +221,11 @@
             </objects>
             <point key="canvasLocation" x="-549" y="33"/>
         </scene>
-        <!--Item-->
+        <!--Search-->
         <scene sceneID="TG7-6t-wRu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KCk-Fi-aGE" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="1.circle.fill" catalog="system" id="6Rp-cL-blx"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" selectedImage="magnifyingglass" id="6Rp-cL-blx"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ROp-QD-pwh">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -240,11 +240,11 @@
             </objects>
             <point key="canvasLocation" x="1276.8115942028987" y="-798.21428571428567"/>
         </scene>
-        <!--Item-->
+        <!--Process-->
         <scene sceneID="Cea-5m-d7I">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Ubu-e0-kUY" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="folder.fill" catalog="system" id="s6Y-h2-WZG"/>
+                    <tabBarItem key="tabBarItem" title="Process" image="externaldrive" catalog="system" selectedImage="externaldrive.fill" id="s6Y-h2-WZG"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eq7-zb-CxW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -259,11 +259,11 @@
             </objects>
             <point key="canvasLocation" x="1276.8115942028987" y="-120.53571428571428"/>
         </scene>
-        <!--Item-->
+        <!--Download-->
         <scene sceneID="1Rj-Su-RV5">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PFW-Ey-jML" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" selectedImage="externaldrive.badge.person.crop" catalog="system" id="eAV-r1-nRg"/>
+                    <tabBarItem key="tabBarItem" title="Download" image="video" catalog="system" selectedImage="video.fill" id="eAV-r1-nRg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eSk-mn-IOd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -280,9 +280,11 @@
         </scene>
     </scenes>
     <resources>
-        <image name="1.circle.fill" catalog="system" width="128" height="121"/>
-        <image name="externaldrive.badge.person.crop" catalog="system" width="128" height="92"/>
-        <image name="folder.fill" catalog="system" width="128" height="97"/>
+        <image name="externaldrive" catalog="system" width="128" height="88"/>
+        <image name="externaldrive.fill" catalog="system" width="128" height="87"/>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="video" catalog="system" width="128" height="83"/>
+        <image name="video.fill" catalog="system" width="128" height="82"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
