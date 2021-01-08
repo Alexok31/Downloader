@@ -9,21 +9,21 @@ import UIKit
 import WebKit
 
 protocol BrowserViewType: class {
-    var selectionDownloadedVideoView: SelectionDownloadedVideoView? {get}
+    var sheetView: SheetView? {get}
     func loadWebPage(request: URLRequest)
     func showDownloadedVideoView()
     func hideDownloadedVideoView()
     func changeDownloadButtonState(isActive: Bool)
+    func loadingView(isActive: Bool)
 }
 
 class BrowserViewController: UIViewController, BrowserViewType {
     
     @IBOutlet weak var webKitView: WKWebView!
+    @IBOutlet weak var loadingView: LoadView!
     @IBOutlet weak var downloadButton: UIButton!
     
-    var selectionDownloadedVideoView: SelectionDownloadedVideoView?
-    var blackoutView = UIView()
-    var downloadedVideoBottomConstraint: NSLayoutConstraint?
+    var sheetView: SheetView?
     
     var configurator: BrowserConfiguratorType?
     var presenter: BrowserPresenterType?
@@ -34,12 +34,6 @@ class BrowserViewController: UIViewController, BrowserViewType {
         presenter?.viewDidLoad()
         configUI()
         webKitView.addObserver(self, forKeyPath: "URL", options: [.new, .old], context: nil)
-        tapToDownloadButton()
-    }
-    
-    func configUI() {
-        title = "Browser"
-        setupDownloadedVideoView()
     }
     
     func loadWebPage(request: URLRequest) {
@@ -52,67 +46,60 @@ class BrowserViewController: UIViewController, BrowserViewType {
         let pastUrl = "\(oldValue)"
         
         if  nextUrl != pastUrl {
-            print(nextUrl)
+            // nextUrl
+            presenter?.checkPage(from: nextUrl)
         } else {
-            print(pastUrl)
-        }
-    }
-    
-    func tapToDownloadButton() {
-        selectionDownloadedVideoView?.tapToDownloadButton = { [weak self] in
-            self?.presenter?.tapToDownloadButton()
+            // pastUrl
         }
     }
     
     func showDownloadedVideoView() {
-        blackoutView.isHidden = false
-        UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 1, animations: { [weak self] in
-            guard let self = self else { return }
-            self.blackoutView.alpha = 0.5
-            self.downloadedVideoBottomConstraint?.constant = 20
-            self.tabBarController?.view.layoutIfNeeded()
-        })
+        sheetView?.open()
     }
     
     func hideDownloadedVideoView() {
-        guard let videoView = selectionDownloadedVideoView else {return}
-        self.view.layoutIfNeeded()
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            guard let self = self else { return }
-            self.blackoutView.alpha = 0.0
-            self.downloadedVideoBottomConstraint?.constant = videoView.frame.height
-            self.tabBarController?.view.layoutIfNeeded()
-        } completion: { [weak self] (_) in
-            self?.blackoutView.isHidden = true
-        }
+        sheetView?.clouse()
     }
     
     func changeDownloadButtonState(isActive: Bool) {
         downloadButton.isEnabled = isActive
-        downloadButton.backgroundColor = isActive == true ? .green : .darkGray
+        downloadButton.backgroundColor = .gray
+        let buttonTitle = isActive ? "Download" : "Not Found"
+        let buttonColor = isActive ? R.color.activeDownloadColor() : R.color.notFoundVideoColor()
+        downloadButton.setTitle(buttonTitle, for: .normal)
+        downloadButton.backgroundColor = buttonColor
+        downloadButton.layer.standartShadow(color: buttonColor)
     }
     
-    @IBAction func downloadAction(_ sender: Any) {
-        presenter?.downloadAction()
+    func loadingView(isActive: Bool) {
+        loadingView.isAnimating = isActive
+        let buttonTitle = "Searching"
+        let buttonColor = R.color.searchVideoColor()
+        if isActive {
+            downloadButton.setTitle(buttonTitle, for: .normal)
+            downloadButton.backgroundColor = buttonColor
+            downloadButton.layer.standartShadow(color: buttonColor)
+        }
+    }
+    
+    private func configUI() {
+        title = "Browser"
+        setupDownloadedVideoView()
+        configLoadingView()
     }
     
     private func setupDownloadedVideoView() {
-        selectionDownloadedVideoView = R.nib.selectionDownloadedVideoView(owner: self)
-        guard let videoView = selectionDownloadedVideoView else {return}
-        blackoutView.backgroundColor = .black
-        blackoutView.frame = view.frame
-        blackoutView.alpha = 0.0
-        blackoutView.isHidden = true
-        if let tabbarView = tabBarController?.view {
-            tabbarView.addSubview(blackoutView)
-            tabbarView.addSubview(videoView)
-            videoView.translatesAutoresizingMaskIntoConstraints = false
-            videoView.widthAnchor.constraint(equalTo: tabbarView.widthAnchor).isActive = true
-            downloadedVideoBottomConstraint = videoView.bottomAnchor.constraint(equalTo: tabbarView.bottomAnchor)
-            downloadedVideoBottomConstraint?.constant = videoView.frame.height
-            downloadedVideoBottomConstraint?.isActive = true
-            videoView.leftAnchor.constraint(equalTo: tabbarView.leftAnchor).isActive = true
-            videoView.rightAnchor.constraint(equalTo: tabbarView.rightAnchor).isActive = true
-        }
+        let topPosition = view.frame.height - 270 - (self.tabBarController?.tabBar.frame.height ?? 49.0)
+        sheetView?.configure(bottomPosition: view.frame.height + 50, topPosition: topPosition)
     }
+    
+    private func configLoadingView() {
+        loadingView.backgroundColor = .clear
+    }
+    
+    @IBAction private func downloadAction(_ sender: Any) {
+        presenter?.downloadAction()
+    }
+    
+    
 }

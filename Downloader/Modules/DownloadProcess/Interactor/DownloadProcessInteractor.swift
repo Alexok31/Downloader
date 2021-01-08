@@ -10,6 +10,7 @@ import RxSwift
 protocol DownloadProcessInteractorType {
     var downloadingFiles: [DownloadProcessEntity]? { get }
     var updateDownloadingFiles: PublishSubject<()> { get }
+    var fileDownloadComplete: PublishSubject<()> { get }
     var downloadingFilesCounts: Int { get }
     func pauseDownload()
     func resumeDownload()
@@ -18,6 +19,7 @@ protocol DownloadProcessInteractorType {
 class DownloadProcessInteractor: DownloadProcessInteractorType {
     
     var updateDownloadingFiles = PublishSubject<()>.init()
+    var fileDownloadComplete = PublishSubject<()>.init()
     
     var downloadingFiles: [DownloadProcessEntity]? {
         return downloadControll?.downloadingVideos
@@ -57,9 +59,7 @@ class DownloadProcessInteractor: DownloadProcessInteractorType {
     }
     
     private func obseveFileDownloadComplete() {
-        downloadControll?.fileDownloadComplete.subscribe(onNext: { [weak self] (downloadVideo) in
-            
-            //self?.saveDownloadFile(downloadVideo: downloadVideo)
-        }).disposed(by: disposeBag)
+        downloadControll?.fileDownloadComplete.subscribe(fileDownloadComplete)
+            .disposed(by: disposeBag)
     }
 }

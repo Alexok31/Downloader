@@ -9,6 +9,7 @@ import Foundation
 
 protocol BrowseServiceType {
     func getUrlVideo(from pageurl: String, complition: @escaping (StatusServerResponse, VideoUrlEntity?)->())
+    func stopAllDataTasks()
 }
 
 class BrowseService: BrowseServiceType {
@@ -28,8 +29,12 @@ class BrowseService: BrowseServiceType {
                 complition(.notResponding, nil)
             }
         } failureCode: { (statusServer) in
-            complition(.notResponding, nil)
+            complition(statusServer, nil)
         }
+    }
+    
+    func stopAllDataTasks() {
+        requestService.stopLastDataTasks()
     }
     
 }

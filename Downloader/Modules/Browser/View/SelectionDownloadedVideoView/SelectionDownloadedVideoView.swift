@@ -18,6 +18,7 @@ class SelectionDownloadedVideoView: UIView {
     
     var model: VideoUrlEntity? {
         willSet(model) {
+            nameVideoLabel.text = ""
             previewImageView.downloadImege(from: model?.poster)
         }
     }

@@ -12,6 +12,7 @@ protocol BrowserPresenterType {
     func viewDidLoad()
     func downloadAction()
     func tapToDownloadButton()
+    func checkPage(from urlLink: String)
 }
 
 class BrowserPresenter: NSObject, BrowserPresenterType {
@@ -27,6 +28,7 @@ class BrowserPresenter: NSObject, BrowserPresenterType {
         self.interactor = interactor
         self.router = router
         super.init()
+        observeUrlVideoResult()
         observeVideoUrl()
         tapToDownloadButton()
     }
@@ -35,51 +37,53 @@ class BrowserPresenter: NSObject, BrowserPresenterType {
         loadWebPage()
     }
     
-    func loadWebPage() {
-        if let url = URL(string: urlString) {
-            let request = URLRequest(url: url)
-            view?.loadWebPage(request: request)
-        }
-    }
-    
     func tapToDownloadButton() {
         interactor.startDownloadVideo(name: nil)
         view?.hideDownloadedVideoView()
         setBadge(value: "1")
     }
     
-    func setBadge(value: String) {
-        let viewController = view as? UIViewController
-        viewController?.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = value
-    }
-    
     func downloadAction() {
         view?.showDownloadedVideoView()
     }
     
-    func observeVideoUrl() {
+    func checkPage(from urlLink: String) {
+        interactor.stopAllDataTasks()
+        view?.changeDownloadButtonState(isActive: false)
+        view?.loadingView(isActive: true)
+        interactor.getUrlVideo(from: urlLink)
+    }
+    
+    private func loadWebPage() {
+        guard let request = interactor.request else { return }
+        view?.loadWebPage(request: request)
+    }
+    
+    private func setBadge(value: String) {
+        let viewController = view as? UIViewController
+        viewController?.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = value
+    }
+    
+    private func setSelectionDownloadedVideoData() {
+        guard let selectionDownloadedVideoView = view?.sheetView?.content as? SelectionDownloadedVideoView else { return }
+        selectionDownloadedVideoView.model = interactor.urlVideoBody
+        selectionDownloadedVideoView.tapToDownloadButton = { [weak self] in
+            self?.tapToDownloadButton()
+        }
+    }
+    
+    private func  observeUrlVideoResult() {
+        interactor.statusServer.subscribe { [weak self] (statusServerResponse) in
+            let isActive = statusServerResponse.element == .successful
+            self?.view?.changeDownloadButtonState(isActive: isActive)
+            self?.view?.loadingView(isActive: false)
+        }.disposed(by: disposeBag)
+
+    }
+    
+    private func observeVideoUrl() {
         interactor.videoUrl.subscribe { [weak self] (videoUrlBody) in
-            self?.view?.changeDownloadButtonState(isActive: true)
             self?.setSelectionDownloadedVideoData()
         }.disposed(by: disposeBag)
     }
-    
-    func checkPage(from request: URLRequest?) {
-        interactor.getUrlVideo(from: request)
-    }
-    
-    func setSelectionDownloadedVideoData() {
-        view?.selectionDownloadedVideoView?.model = interactor.urlVideoBody
-    }
-}
-
-extension BrowserPresenter: WKNavigationDelegate {
-    
-    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: ((WKNavigationActionPolicy) -> Void)) {
-
-        checkPage(from: navigationAction.request)
-        
-        decisionHandler(.allow)
-    }
-    
 }

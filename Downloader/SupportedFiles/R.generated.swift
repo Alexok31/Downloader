@@ -16,10 +16,28 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.color` struct is generated, and contains static references to 1 colors.
+  /// This `R.color` struct is generated, and contains static references to 10 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
+    /// Color `DefaultBackgroundColor`.
+    static let defaultBackgroundColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "DefaultBackgroundColor")
+    /// Color `activeDownloadColor`.
+    static let activeDownloadColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "activeDownloadColor")
+    /// Color `loadBlue`.
+    static let loadBlue = Rswift.ColorResource(bundle: R.hostingBundle, name: "loadBlue")
+    /// Color `loadOrange`.
+    static let loadOrange = Rswift.ColorResource(bundle: R.hostingBundle, name: "loadOrange")
+    /// Color `loadPurple`.
+    static let loadPurple = Rswift.ColorResource(bundle: R.hostingBundle, name: "loadPurple")
+    /// Color `loadRed`.
+    static let loadRed = Rswift.ColorResource(bundle: R.hostingBundle, name: "loadRed")
+    /// Color `loadYelow`.
+    static let loadYelow = Rswift.ColorResource(bundle: R.hostingBundle, name: "loadYelow")
+    /// Color `notFoundVideoColor`.
+    static let notFoundVideoColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "notFoundVideoColor")
+    /// Color `searchVideoColor`.
+    static let searchVideoColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "searchVideoColor")
     
     /// `UIColor(named: "AccentColor", bundle: ..., traitCollection: ...)`
     @available(tvOS 11.0, *)
@@ -28,10 +46,73 @@ struct R: Rswift.Validatable {
       return UIKit.UIColor(resource: R.color.accentColor, compatibleWith: traitCollection)
     }
     
+    /// `UIColor(named: "DefaultBackgroundColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func defaultBackgroundColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.defaultBackgroundColor, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "activeDownloadColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func activeDownloadColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.activeDownloadColor, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "loadBlue", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func loadBlue(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.loadBlue, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "loadOrange", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func loadOrange(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.loadOrange, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "loadPurple", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func loadPurple(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.loadPurple, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "loadRed", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func loadRed(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.loadRed, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "loadYelow", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func loadYelow(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.loadYelow, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "notFoundVideoColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func notFoundVideoColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.notFoundVideoColor, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "searchVideoColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func searchVideoColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.searchVideoColor, compatibleWith: traitCollection)
+    }
+    
     fileprivate init() {}
   }
   
-  /// This `R.nib` struct is generated, and contains static references to 4 nibs.
+  /// This `R.nib` struct is generated, and contains static references to 5 nibs.
   struct nib {
     /// Nib `DownloadedVideosCell`.
     static let downloadedVideosCell = _R.nib._DownloadedVideosCell()
@@ -39,6 +120,8 @@ struct R: Rswift.Validatable {
     static let downloadingVideosCell = _R.nib._DownloadingVideosCell()
     /// Nib `SelectionDownloadedVideoView`.
     static let selectionDownloadedVideoView = _R.nib._SelectionDownloadedVideoView()
+    /// Nib `SheetView`.
+    static let sheetView = _R.nib._SheetView()
     /// Nib `TopPageCell`.
     static let topPageCell = _R.nib._TopPageCell()
     
@@ -60,6 +143,12 @@ struct R: Rswift.Validatable {
       return UIKit.UINib(resource: R.nib.selectionDownloadedVideoView)
     }
     
+    /// `UINib(name: "SheetView", in: bundle)`
+    @available(*, deprecated, message: "Use UINib(resource: R.nib.sheetView) instead")
+    static func sheetView(_: Void = ()) -> UIKit.UINib {
+      return UIKit.UINib(resource: R.nib.sheetView)
+    }
+    
     /// `UINib(name: "TopPageCell", in: bundle)`
     @available(*, deprecated, message: "Use UINib(resource: R.nib.topPageCell) instead")
     static func topPageCell(_: Void = ()) -> UIKit.UINib {
@@ -76,6 +165,10 @@ struct R: Rswift.Validatable {
     
     static func selectionDownloadedVideoView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SelectionDownloadedVideoView? {
       return R.nib.selectionDownloadedVideoView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SelectionDownloadedVideoView
+    }
+    
+    static func sheetView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SheetView? {
+      return R.nib.sheetView.instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SheetView
     }
     
     static func topPageCell(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> TopPageCell? {
@@ -175,6 +268,17 @@ struct _R: Rswift.Validatable {
       fileprivate init() {}
     }
     
+    struct _SheetView: Rswift.NibResourceType {
+      let bundle = R.hostingBundle
+      let name = "SheetView"
+      
+      func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> SheetView? {
+        return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? SheetView
+      }
+      
+      fileprivate init() {}
+    }
+    
     struct _TopPageCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
       typealias ReusableType = TopPageCell
       
@@ -245,6 +349,7 @@ struct _R: Rswift.Validatable {
         if UIKit.UIImage(named: "video", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'video' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "video.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'video.fill' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "DefaultBackgroundColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'DefaultBackgroundColor' is used in storyboard 'Main', but couldn't be loaded.") }
         }
         if _R.storyboard.main().browserViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browserViewController' could not be loaded from storyboard 'Main' as 'BrowserViewController'.") }
         if _R.storyboard.main().downloadProcessViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'downloadProcessViewController' could not be loaded from storyboard 'Main' as 'DownloadProcessViewController'.") }

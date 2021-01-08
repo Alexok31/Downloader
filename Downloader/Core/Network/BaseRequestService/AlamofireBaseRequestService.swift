@@ -19,14 +19,17 @@ struct AlamofireRequestModel {
 typealias complitionResult<DataModel: Decodable> = (_ result: StatusServerResponse, _ dataModel: DataModel?) -> ()
 
 class AlamofireBaseRequestService: BaseRequestService {
+    
+    private var request: DataRequest?
    
     func callWebServiceAlamofire(_ alamoReq: AlamofireRequestModel, success: @escaping ((_ responseData: Data) -> Void), failureCode: @escaping ((_ code: StatusServerResponse) -> Void)) {
-        var request: DataRequest?
+        
         if let encoding = alamoReq.encoding {
             request = AF.request(alamoReq.path, method: alamoReq.method, parameters: alamoReq.parameters, encoding: encoding, headers: alamoReq.header)
         } else {
             request = AF.request(alamoReq.path, method: alamoReq.method, parameters: alamoReq.parameters, headers: alamoReq.header)
         }
+       
         // Call response handler method of alamofire
         request?.validate(statusCode: 200..<600).responseData(completionHandler: { response in
             let statusCode = response.response?.statusCode
@@ -40,11 +43,18 @@ class AlamofireBaseRequestService: BaseRequestService {
                 }
             case .failure(let error):
                 print(error.localizedDescription)
-                NetworkHelper.shared.checkInternet(completion: { (result) in
-                    failureCode(result)
-                })
+                if error.isExplicitlyCancelledError {
+                    failureCode(.reqerstCancelled)
+                } else {
+                    NetworkHelper.shared.checkInternet(completion: { (result) in
+                        failureCode(result)
+                    })
+                }
             }
-            
         })
+    }
+    
+    func stopLastDataTasks() {
+        request?.cancel()
     }
 }

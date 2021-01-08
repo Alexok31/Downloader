@@ -72,6 +72,7 @@ extension SearchVideoPresenter: UISearchBarDelegate{
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         guard let urlLink = searchBar.text else {return}
+        (view as? UIViewController)?.view.endEditing(true)
         router.openBrowser(urlString: urlLink)
     }
 }

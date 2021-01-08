@@ -10,6 +10,7 @@ import Alamofire
 
 protocol BaseRequestService {
     func callWebServiceAlamofire(_ alamoReq: AlamofireRequestModel, success: @escaping ((_ responseData: Data) -> Void), failureCode: @escaping ((_ code: StatusServerResponse) -> Void))
+    func stopLastDataTasks()
 }
 
 protocol BaseParameterPatch {

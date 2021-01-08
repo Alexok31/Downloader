@@ -25,23 +25,29 @@ class DownloadProcessPresenter: NSObject, DownloadProcessPresenterType {
         self.view = view
         super.init()
         observeUpdateDownloadingFiles()
+        observeFileDownloadComplete()
     }
     
     func viewDidLoad() {
         resetBadge()
     }
     
-    
     private func resetBadge() {
         let viewController = view as? UIViewController
-        viewController?.tabBarItem.badgeValue?.removeAll()
+        viewController?.tabBarController?.viewControllers?[1].tabBarItem.badgeValue = nil
     }
     
     private func observeUpdateDownloadingFiles() {
-        interactor.updateDownloadingFiles.subscribe { (_) in
-            self.view?.reloadTableView()
+        interactor.updateDownloadingFiles.subscribe { [weak self] (_) in
+            self?.view?.reloadTableView()
         }.disposed(by: disposeBag)
-
+    }
+    
+    private func observeFileDownloadComplete() {
+        interactor.fileDownloadComplete.subscribe { [weak self] (_) in
+            self?.view?.reloadTableView()
+            self?.resetBadge()
+        }.disposed(by: disposeBag)
     }
 }
 

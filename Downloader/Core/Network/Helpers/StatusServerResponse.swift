@@ -9,6 +9,8 @@ import Foundation
 
 enum StatusServerResponse: Int {
     case successful
+    case videoNotAvailable
+    case reqerstCancelled
     case notResponding
     case noInternetConnection
 }

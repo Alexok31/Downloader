@@ -16,29 +16,41 @@
                 <rect key="frame" x="0.0" y="0.0" width="186" height="202"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vLR-iM-FDv" customClass="CustomImageView" customModule="Downloader" customModuleProvider="target">
-                        <rect key="frame" x="18" y="10" width="150" height="150"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gMR-67-Uby">
+                        <rect key="frame" x="0.0" y="0.0" width="186" height="202"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vLR-iM-FDv" customClass="CustomImageView" customModule="Downloader" customModuleProvider="target">
+                                <rect key="frame" x="18" y="10" width="150" height="150"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="vLR-iM-FDv" secondAttribute="height" id="DOG-uz-9fv"/>
+                                </constraints>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="MID-2B-Unc">
+                                <rect key="frame" x="5" y="170" width="176" height="27"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="vLR-iM-FDv" secondAttribute="height" id="DOG-uz-9fv"/>
+                            <constraint firstItem="MID-2B-Unc" firstAttribute="top" secondItem="vLR-iM-FDv" secondAttribute="bottom" constant="10" id="42o-Wy-lip"/>
+                            <constraint firstItem="vLR-iM-FDv" firstAttribute="top" secondItem="gMR-67-Uby" secondAttribute="top" constant="10" id="8iP-Rb-qSz"/>
+                            <constraint firstAttribute="bottom" secondItem="MID-2B-Unc" secondAttribute="bottom" constant="5" id="MII-kU-NUn"/>
+                            <constraint firstItem="MID-2B-Unc" firstAttribute="leading" secondItem="gMR-67-Uby" secondAttribute="leading" constant="5" id="TF5-JB-NeA"/>
+                            <constraint firstItem="vLR-iM-FDv" firstAttribute="leading" secondItem="gMR-67-Uby" secondAttribute="leading" constant="18" id="Ud5-yd-MjV"/>
+                            <constraint firstAttribute="trailing" secondItem="MID-2B-Unc" secondAttribute="trailing" constant="5" id="nif-Cj-5oX"/>
+                            <constraint firstItem="vLR-iM-FDv" firstAttribute="centerX" secondItem="gMR-67-Uby" secondAttribute="centerX" id="zbd-0I-njO"/>
                         </constraints>
-                    </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="MID-2B-Unc">
-                        <rect key="frame" x="5" y="170" width="176" height="27"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="MID-2B-Unc" secondAttribute="bottom" constant="5" id="GhT-kt-YZn"/>
-                <constraint firstItem="vLR-iM-FDv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="18" id="L69-v0-UYH"/>
-                <constraint firstItem="MID-2B-Unc" firstAttribute="centerX" secondItem="vLR-iM-FDv" secondAttribute="centerX" id="REv-kB-sJK"/>
-                <constraint firstAttribute="trailing" secondItem="MID-2B-Unc" secondAttribute="trailing" constant="5" id="WcX-ga-0pb"/>
-                <constraint firstItem="MID-2B-Unc" firstAttribute="top" secondItem="vLR-iM-FDv" secondAttribute="bottom" constant="10" id="cye-R3-yJg"/>
-                <constraint firstItem="vLR-iM-FDv" firstAttribute="centerX" secondItem="ZTg-uK-7eu" secondAttribute="centerX" id="jvB-UV-e5A"/>
-                <constraint firstItem="vLR-iM-FDv" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="oNP-0o-Iq6"/>
+                <constraint firstItem="gMR-67-Uby" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="G8S-8I-d2M"/>
+                <constraint firstAttribute="bottom" secondItem="gMR-67-Uby" secondAttribute="bottom" id="Rln-er-TOD"/>
+                <constraint firstAttribute="trailing" secondItem="gMR-67-Uby" secondAttribute="trailing" id="qlG-6h-q8I"/>
+                <constraint firstItem="gMR-67-Uby" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="s6S-bt-LsQ"/>
             </constraints>
             <size key="customSize" width="186" height="202"/>
             <connections>

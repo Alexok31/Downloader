@@ -9,6 +9,7 @@ import UIKit
 
 final class SearchVideoViewController: UIViewController {
 
+    @IBOutlet weak var scrollView: CustomScrollView!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var topPageCollectioView: UICollectionView!
     @IBOutlet weak var topPageHeigth: NSLayoutConstraint!
@@ -30,6 +31,13 @@ final class SearchVideoViewController: UIViewController {
     func configurUI() {
         title = "Search"
         topPageCollectioView.registerWithNib(cellClass: TopPageCell.self)
+        setDidTapCpmplition()
+    }
+    
+    func setDidTapCpmplition() {
+        scrollView.didTap = { [weak self] in
+            self?.view.endEditing(true)
+        }
     }
     
     @IBAction func howToDownloadAction(_ sender: Any) {

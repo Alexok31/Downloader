@@ -7,7 +7,8 @@
 
 import Foundation
 
-class DownloadProcessEntity {
+class DownloadProcessEntity: Equatable {
+    
     var nameFile: String = ""
     var previewImage: String? = nil
     var urlLink: String = ""
@@ -24,5 +25,9 @@ class DownloadProcessEntity {
         self.percent = percent
         self.speedDownload = speedDownload
         self.urlFile = urlFile
+    }
+    
+    static func == (lhs: DownloadProcessEntity, rhs: DownloadProcessEntity) -> Bool {
+        return lhs.nameFile == rhs.nameFile && lhs.previewImage == rhs.previewImage && lhs.urlLink == rhs.urlLink && lhs.size == rhs.size && lhs.previewImage == rhs.previewImage && lhs.urlFile == rhs.urlFile
     }
 }

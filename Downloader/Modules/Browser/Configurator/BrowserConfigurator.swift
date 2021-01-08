@@ -23,15 +23,23 @@ class BrowserConfigurator: BrowserConfiguratorType {
         let router = BrowserRouter()
         let presenter = BrowserPresenter(interactor: interactor, router: router)
         presenter.view = viewController
-        presenter.urlString = urlString
-        viewController.webKitView.navigationDelegate = presenter
+        let sheetView = R.nib.sheetView(owner: viewController)
+        viewController.view.addSubview(sheetView!)
+        if let selectionDownloadedVideoView = R.nib.selectionDownloadedVideoView(owner: sheetView) {
+            sheetView?.setupConstraintFromSuperview(content: selectionDownloadedVideoView, height: 270, isDarkBackground: true)
+        }
+        
+        viewController.sheetView = sheetView
+        
         viewController.presenter = presenter
     }
     
     var interactor: BrowserInteractor {
         let requestService = AlamofireBaseRequestService()
         let browseService = BrowseService(requestService: requestService)
-        return BrowserInteractor(browseService: browseService)
+        let interactor = BrowserInteractor(browseService: browseService)
+        interactor.urlString = urlString
+        return interactor
     }
     
 }

@@ -2,7 +2,9 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Qfw-E9-3p6">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -16,16 +18,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Qif-nt-ZmJ">
+                            <searchBar contentMode="redraw" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="Qif-nt-ZmJ">
                                 <rect key="frame" x="0.0" y="88" width="414" height="56"/>
+                                <color key="backgroundColor" name="DefaultBackgroundColor"/>
+                                <color key="barTintColor" name="DefaultBackgroundColor"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeZ-QG-9hO">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VeZ-QG-9hO" customClass="CustomScrollView" customModule="Downloader" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="144" width="414" height="669"/>
                                 <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgQ-E7-FxC">
+                                        <rect key="frame" x="146.5" y="230" width="121" height="30"/>
+                                        <state key="normal" title="How to Download"/>
+                                        <connections>
+                                            <action selector="howToDownloadAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZHy-Kz-exM"/>
+                                        </connections>
+                                    </button>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="HQe-XH-ppn">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="backgroundColor" name="DefaultBackgroundColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="200" id="LDg-g9-hU8"/>
                                         </constraints>
@@ -37,14 +48,8 @@
                                         </collectionViewFlowLayout>
                                         <cells/>
                                     </collectionView>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fgQ-E7-FxC">
-                                        <rect key="frame" x="146.5" y="230" width="121" height="30"/>
-                                        <state key="normal" title="How to Download"/>
-                                        <connections>
-                                            <action selector="howToDownloadAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZHy-Kz-exM"/>
-                                        </connections>
-                                    </button>
                                 </subviews>
+                                <color key="backgroundColor" name="DefaultBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="fgQ-E7-FxC" secondAttribute="bottom" constant="50" id="Zuj-6g-8VW"/>
                                     <constraint firstItem="fgQ-E7-FxC" firstAttribute="top" secondItem="HQe-XH-ppn" secondAttribute="bottom" constant="30" id="hKd-c5-pFs"/>
@@ -71,6 +76,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="bXa-89-VdM"/>
                     <connections>
+                        <outlet property="scrollView" destination="VeZ-QG-9hO" id="Rie-wj-d5F"/>
                         <outlet property="searchBar" destination="Qif-nt-ZmJ" id="IaS-AE-uUs"/>
                         <outlet property="topPageCollectioView" destination="HQe-XH-ppn" id="ny0-W4-VZx"/>
                         <outlet property="topPageHeigth" destination="LDg-g9-hU8" id="xpk-Ce-vii"/>
@@ -90,11 +96,11 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zjk-A2-hKD">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="DefaultBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="tzI-KN-iHO"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="DefaultBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Zjk-A2-hKD" firstAttribute="top" secondItem="tzI-KN-iHO" secondAttribute="top" id="JB7-yZ-uKa"/>
                             <constraint firstItem="Zjk-A2-hKD" firstAttribute="leading" secondItem="tzI-KN-iHO" secondAttribute="leading" id="OJl-Op-nfT"/>
@@ -121,11 +127,11 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Eo6-hK-Nu5">
                                 <rect key="frame" x="0.0" y="88" width="414" height="725"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" name="DefaultBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wgD-tG-fk9"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" name="DefaultBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Eo6-hK-Nu5" firstAttribute="leading" secondItem="wgD-tG-fk9" secondAttribute="leading" id="Yjq-Tf-DCd"/>
                             <constraint firstItem="Eo6-hK-Nu5" firstAttribute="top" secondItem="wgD-tG-fk9" secondAttribute="top" id="eoP-9o-SKo"/>
@@ -158,12 +164,19 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="I0U-eT-NzU" customClass="LoadView" customModule="Downloader" customModuleProvider="target">
+                                <rect key="frame" x="294" y="732" width="90" height="90"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="2Te-Fr-JOm"/>
+                                    <constraint firstAttribute="width" secondItem="I0U-eT-NzU" secondAttribute="height" multiplier="1:1" id="mgV-1k-5BF"/>
+                                </constraints>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkz-jo-03T">
-                                <rect key="frame" x="284" y="702" width="80" height="80"/>
+                                <rect key="frame" x="298" y="736" width="82" height="82"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="lkz-jo-03T" secondAttribute="height" id="H1R-EX-keC"/>
-                                    <constraint firstAttribute="width" constant="80" id="smT-Nc-gV6"/>
+                                    <constraint firstAttribute="width" secondItem="lkz-jo-03T" secondAttribute="height" multiplier="1:1" id="kks-hT-GGv"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                 <state key="normal" title="Download">
@@ -171,7 +184,7 @@
                                 </state>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="40"/>
+                                        <integer key="value" value="41"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
@@ -183,9 +196,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Fmp-CO-zXR" secondAttribute="bottom" id="6tc-yr-r34"/>
+                            <constraint firstItem="UYf-7j-pnA" firstAttribute="bottom" secondItem="I0U-eT-NzU" secondAttribute="bottom" constant="40" id="82c-ex-8aS"/>
+                            <constraint firstItem="lkz-jo-03T" firstAttribute="centerY" secondItem="I0U-eT-NzU" secondAttribute="centerY" id="8J3-zz-qu6"/>
+                            <constraint firstItem="UYf-7j-pnA" firstAttribute="trailing" secondItem="I0U-eT-NzU" secondAttribute="trailing" constant="30" id="9RV-9W-Zg7"/>
                             <constraint firstItem="Fmp-CO-zXR" firstAttribute="trailing" secondItem="UYf-7j-pnA" secondAttribute="trailing" id="TQq-pt-c42"/>
-                            <constraint firstItem="UYf-7j-pnA" firstAttribute="trailing" secondItem="lkz-jo-03T" secondAttribute="trailing" constant="50" id="Tqg-Iv-NON"/>
-                            <constraint firstItem="UYf-7j-pnA" firstAttribute="bottom" secondItem="lkz-jo-03T" secondAttribute="bottom" constant="80" id="ZlN-Rz-Ao4"/>
+                            <constraint firstItem="lkz-jo-03T" firstAttribute="width" secondItem="I0U-eT-NzU" secondAttribute="width" constant="-8" id="dxv-dR-4QU"/>
+                            <constraint firstItem="lkz-jo-03T" firstAttribute="centerX" secondItem="I0U-eT-NzU" secondAttribute="centerX" id="iwi-Go-cVg"/>
                             <constraint firstItem="Fmp-CO-zXR" firstAttribute="leading" secondItem="UYf-7j-pnA" secondAttribute="leading" id="poW-Dz-Azl"/>
                             <constraint firstItem="Fmp-CO-zXR" firstAttribute="top" secondItem="UYf-7j-pnA" secondAttribute="top" id="x0z-zf-rTq"/>
                         </constraints>
@@ -193,6 +209,7 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="downloadButton" destination="lkz-jo-03T" id="BPF-jm-kr2"/>
+                        <outlet property="loadingView" destination="I0U-eT-NzU" id="plb-F4-ehF"/>
                         <outlet property="webKitView" destination="Fmp-CO-zXR" id="gM5-eh-pBF"/>
                     </connections>
                 </viewController>
@@ -210,6 +227,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" name="DefaultBackgroundColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="KCk-Fi-aGE" kind="relationship" relationship="viewControllers" id="J5y-Ys-KDc"/>
@@ -230,6 +248,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ROp-QD-pwh">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="DefaultBackgroundColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -249,6 +268,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eq7-zb-CxW">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="DefaultBackgroundColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -268,6 +288,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="eSk-mn-IOd">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="DefaultBackgroundColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -285,6 +306,9 @@
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>
         <image name="video" catalog="system" width="128" height="83"/>
         <image name="video.fill" catalog="system" width="128" height="82"/>
+        <namedColor name="DefaultBackgroundColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

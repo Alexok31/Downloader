@@ -11,7 +11,7 @@ import AVFoundation
 
 protocol DownloadControll {
     var updateDownloadingVideos: PublishSubject<()> { get }
-    var fileDownloadComplete: PublishSubject<DownloadProcessEntity> { get }
+    var fileDownloadComplete: PublishSubject<()> { get }
     var downloadingVideos: [DownloadProcessEntity] { get }
     func startDownloadVideo(by urlVideo: String, previewImage: String?, name: String)
     func stop()
@@ -21,7 +21,7 @@ protocol DownloadControll {
 class DownloadService: DownloadControll {
     
     var updateDownloadingVideos = PublishSubject<()>.init()
-    var fileDownloadComplete = PublishSubject<DownloadProcessEntity>.init()
+    var fileDownloadComplete = PublishSubject<()>.init()
     
     var downloadingVideos = [DownloadProcessEntity]()
     
@@ -43,7 +43,8 @@ class DownloadService: DownloadControll {
                 video.urlFile = videoFileUrl
                 video.size = sizeVideo
                 self.saveDownloadFile(downloadVideo: video)
-                self.fileDownloadComplete.onNext(video)
+                self.downloadingVideos.remove(object: video)
+                self.fileDownloadComplete.onNext(())
             }
         }
     }
