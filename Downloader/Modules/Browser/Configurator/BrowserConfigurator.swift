@@ -23,6 +23,7 @@ class BrowserConfigurator: BrowserConfiguratorType {
         let router = BrowserRouter()
         let presenter = BrowserPresenter(interactor: interactor, router: router)
         presenter.view = viewController
+        viewController.webKitView.navigationDelegate = viewController
         let sheetView = R.nib.sheetView(owner: viewController)
         viewController.view.addSubview(sheetView!)
         if let selectionDownloadedVideoView = R.nib.selectionDownloadedVideoView(owner: sheetView) {

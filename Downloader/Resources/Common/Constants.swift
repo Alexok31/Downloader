@@ -11,4 +11,5 @@ enum Constants {
     
     static let baseUrl = "https://gethisvideo.com"
     static let googleSearch = "https://www.google.com/search?q="
+    static let instagramUrl = "www.instagram.com"
 }

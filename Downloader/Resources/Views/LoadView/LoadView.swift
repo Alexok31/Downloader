@@ -11,12 +11,13 @@ import UIKit
 class LoadView: UIButton {
     
     // MARK: - Properties
-    var colors: [UIColor] {
+    var lineWidth: CGFloat = 5
+    
+    private var isAnimating: Bool = false
+    private var colors: [UIColor] {
         return [R.color.loadBlue()!, R.color.loadRed()!,
                 R.color.loadYelow()!, R.color.loadPurple()!, R.color.loadOrange()!]
     }
-    
-    var lineWidth: CGFloat = 5
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -35,8 +36,21 @@ class LoadView: UIButton {
         shapeLayer.path = path.cgPath
     }
     
+    func start() {
+        guard !isAnimating else { return }
+        self.animateStroke()
+        self.animateRotation()
+        isAnimating = true
+    }
+    
+    func stop() {
+        self.shapeLayer.removeFromSuperlayer()
+        self.layer.removeAllAnimations()
+        isAnimating = false
+    }
+    
     // MARK: - Animations
-    func animateStroke() {
+    private func animateStroke() {
         
         let startAnimation = StrokeAnimation(
             type: .start,
@@ -70,7 +84,7 @@ class LoadView: UIButton {
         self.layer.addSublayer(shapeLayer)
     }
     
-    func animateRotation() {
+    private func animateRotation() {
         let rotationAnimation = RotationAnimation(
             direction: .z,
             fromValue: 0,
@@ -85,16 +99,4 @@ class LoadView: UIButton {
     private lazy var shapeLayer: ProgressShapeLayer = {
         return ProgressShapeLayer(strokeColor: colors.first!, lineWidth: lineWidth)
     }()
-    
-    var isAnimating: Bool = false {
-        didSet {
-            if isAnimating {
-                self.animateStroke()
-                self.animateRotation()
-            } else {
-                self.shapeLayer.removeFromSuperlayer()
-                self.layer.removeAllAnimations()
-            }
-        }
-    }
 }

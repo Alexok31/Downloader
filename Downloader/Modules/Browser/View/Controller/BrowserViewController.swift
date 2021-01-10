@@ -72,13 +72,15 @@ class BrowserViewController: UIViewController, BrowserViewType {
     }
     
     func loadingView(isActive: Bool) {
-        loadingView.isAnimating = isActive
         let buttonTitle = "Searching"
         let buttonColor = R.color.searchVideoColor()
         if isActive {
+            loadingView.start()
             downloadButton.setTitle(buttonTitle, for: .normal)
             downloadButton.backgroundColor = buttonColor
             downloadButton.layer.standartShadow(color: buttonColor)
+        } else {
+            loadingView.stop()
         }
     }
     
@@ -100,6 +102,20 @@ class BrowserViewController: UIViewController, BrowserViewType {
     @IBAction private func downloadAction(_ sender: Any) {
         presenter?.downloadAction()
     }
+}
+
+extension BrowserViewController: WKNavigationDelegate {
     
-    
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
+         defer {
+             decisionHandler(.allow)
+         }
+         guard
+            let url = navigationAction.request.url,
+            let host = url.host, host.hasPrefix(Constants.instagramUrl)
+         else {
+             return
+         }
+        presenter?.checkPage(from: url.absoluteString)
+     }
 }

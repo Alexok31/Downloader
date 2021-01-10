@@ -636,13 +636,13 @@
 		8AFF503B25766E7E00A8BE0A /* Browser */ = {
 			isa = PBXGroup;
 			children = (
-				8AFF504225766F4A00A8BE0A /* Protocol */,
-				8AFF504325766F5800A8BE0A /* Configurator */,
 				8AFF503E25766EF900A8BE0A /* View */,
 				8AFF503D25766EEA00A8BE0A /* Intercactor */,
 				8AFF504025766F1400A8BE0A /* Presenter */,
 				8AFF503F25766EFD00A8BE0A /* Entity */,
 				8AFF504125766F3700A8BE0A /* Router */,
+				8AFF504325766F5800A8BE0A /* Configurator */,
+				8AFF504225766F4A00A8BE0A /* Protocol */,
 			);
 			path = Browser;
 			sourceTree = "<group>";
