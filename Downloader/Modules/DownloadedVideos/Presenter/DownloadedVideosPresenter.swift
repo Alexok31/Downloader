@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVKit
 
 protocol DownloadedVideosPresenterType {
     func viewDidLoad()
@@ -16,9 +17,12 @@ class DownloadedVideosPresenter: NSObject, DownloadedVideosPresenterType {
     
     weak var view: DownloadedVideosViewType?
     private var interactor: DownloadedVideosInteractorType
+    private var router: DownloadedVideosRouterType
     
-    init(interactor: DownloadedVideosInteractorType) {
+    init(view: DownloadedVideosViewType, interactor: DownloadedVideosInteractorType, router: DownloadedVideosRouterType) {
+        self.view = view
         self.interactor = interactor
+        self.router = router
     }
     
     func viewDidLoad() {
@@ -32,12 +36,23 @@ class DownloadedVideosPresenter: NSObject, DownloadedVideosPresenterType {
         }
     }
     
-    private func saveVideoToGallery(nameVideo: String) {
+    private func playVideo(for indexPath: IndexPath) {
+        guard let nameVideo = interactor.downloadedVideo(for: indexPath)?.name else {return}
+        let player = interactor.videoPlayer(nameVideo: nameVideo)
+        router.showPayer(player: player)
+    }
+    
+    private func saveVideoToGallery(for indexPath: IndexPath) {
+        guard let nameVideo = interactor.downloadedVideo(for: indexPath)?.name else {return}
         interactor.saveVideoToGallery(nameVideo: nameVideo) { [weak self] in
             self?.view?.showVideoSavedAlert()
         } failure: { [weak self] (error) in
             self?.view?.showVideoSavingErrorAlert(message: error.localizedDescription)
         }
+    }
+    
+    private func deleteVideo(for indexPath: IndexPath) {
+        interactor.deleteVideo(for: indexPath)
     }
     
     deinit {
@@ -60,10 +75,19 @@ extension DownloadedVideosPresenter: UITableViewDelegate, UITableViewDataSource,
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        playVideo(for: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            deleteVideo(for: indexPath)
+        }
+    }
+    
     func tableViewCell(_ cell: UITableViewCell, buttonTapped: UIButton) {
-        guard let indexPath = view?.downloadedVideosTableView.indexPath(for: cell),
-              let name = interactor.downloadedVideo(for: indexPath)?.name else {return}
-        saveVideoToGallery(nameVideo: name)
+        guard let indexPath = view?.downloadedVideosTableView.indexPath(for: cell) else { return }
+        saveVideoToGallery(for: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

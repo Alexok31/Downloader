@@ -25,10 +25,9 @@ class DownloadedVideosCell: UITableViewCell {
             }
         }
     }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        
+    
+    override func prepareForReuse() {
+        previewVideo.image = nil
     }
     
     @IBAction func saveToPhotoAction(_ button: UIButton) {

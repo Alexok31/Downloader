@@ -22,7 +22,7 @@ class DownloadProcessInteractor: DownloadProcessInteractorType {
     var fileDownloadComplete = PublishSubject<()>.init()
     
     var downloadingFiles: [DownloadProcessEntity]? {
-        return downloadControll?.downloadingVideos
+        return downloadControll?.downloadingVideos.reversed()
     }
     
     var downloadingFilesCounts: Int {

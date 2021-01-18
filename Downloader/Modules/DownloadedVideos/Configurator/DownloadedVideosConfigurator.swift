@@ -14,10 +14,10 @@ protocol DownloadedVideosConfiguratorType {
 class DownloadedVideosConfigurator: DownloadedVideosConfiguratorType {
     
     func configure(view: DownloadedVideosViewController) {
-        let presenter = DownloadedVideosPresenter(interactor: interactor)
+        let router = DownloadedVideosRouter(view: view)
+        let presenter = DownloadedVideosPresenter(view: view, interactor: interactor, router: router)
         view.downloadedVideosTableView.delegate = presenter
         view.downloadedVideosTableView.dataSource = presenter
-        presenter.view = view
         view.presenter = presenter
     }
     

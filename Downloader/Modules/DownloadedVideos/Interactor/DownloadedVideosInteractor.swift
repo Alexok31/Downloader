@@ -14,7 +14,9 @@ protocol DownloadedVideosInteractorType {
     var downloadedVideosCount: Int { get }
     func observeDownloadedVideos(complition: @escaping([DownloadedVideosEntity])->())
     func removeObserveDownloadedVideos()
+    func videoPlayer(nameVideo: String) -> PlayerViewController
     func saveVideoToGallery(nameVideo: String, success: @escaping ()->(), failure: @escaping (Error)->())
+    @discardableResult func deleteVideo(for indexPath: IndexPath) -> Bool
 }
  
 class DownloadedVideosInteractor: DownloadedVideosInteractorType {
@@ -26,7 +28,9 @@ class DownloadedVideosInteractor: DownloadedVideosInteractorType {
     }
     
     var downloadedVideos: [DownloadedVideosEntity]? {
-        return dataBaseService.fetch(object: DownloadedVideosEntity.self)
+        return dataBaseService
+            .fetch(object: DownloadedVideosEntity.self)?
+            .reversed()
     }
     
     func downloadedVideo(for indexPath: IndexPath) -> DownloadedVideosEntity? {
@@ -49,8 +53,16 @@ class DownloadedVideosInteractor: DownloadedVideosInteractorType {
         dataBaseService.removeRealmNotificationToken()
     }
     
+    func videoPlayer(nameVideo: String) -> PlayerViewController {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let videoURL = documentsURL.appendingPathComponent(nameVideo)
+        let player = AVPlayer(url: videoURL)
+        let videoPlayer = PlayerViewController()
+        videoPlayer.player = player
+        return videoPlayer
+    }
+    
     func saveVideoToGallery(nameVideo: String, success: @escaping ()->(), failure: @escaping (Error)->()) {
-        
         DispatchQueue.main.async {
             let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
             let videoURL = documentsURL.appendingPathComponent(nameVideo)
@@ -66,4 +78,17 @@ class DownloadedVideosInteractor: DownloadedVideosInteractorType {
         }
     }
     
+    @discardableResult func deleteVideo(for indexPath: IndexPath) -> Bool {
+        guard let video = downloadedVideo(for: indexPath) else { return false }
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        let videoURL = documentsURL.appendingPathComponent(video.name)
+        do {
+            try FileManager.default.removeItem(at: videoURL)
+            dataBaseService.delete(object: video)
+            return true
+        } catch let error as NSError {
+            print("Error: \(error.domain)")
+            return false
+        }
+    }
 }

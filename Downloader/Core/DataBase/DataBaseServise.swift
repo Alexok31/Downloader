@@ -9,6 +9,7 @@ import RealmSwift
 
 protocol DataBaseServise {
     func save(object: [Object], isUpdate: Bool)
+    func delete(object: Object)
     func fetch<object>(object: object.Type) -> [object]? where object: Object
     func addObserve<object>(object: object.Type, complition: @escaping([object]?)->()) where object: Object
     func removeRealmNotificationToken()
@@ -35,6 +36,12 @@ class RealmDataBaseServise: DataBaseServise {
                 self?.realm?.add(object)
             }
             
+        }
+    }
+    
+    func delete(object: Object) {
+        realmWriteBlock { [weak self] in
+            self?.realm?.delete(object)
         }
     }
     
