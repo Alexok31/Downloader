@@ -9,7 +9,7 @@ import UIKit
 
 class DownloadedVideosCell: UITableViewCell {
     
-    @IBOutlet weak var previewVideo: CustomImageView!
+    @IBOutlet weak var previewVideo: LoadingImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var sizeVideo: UILabel!
     @IBOutlet weak var saveToPhotoButton: UIButton!
@@ -20,13 +20,14 @@ class DownloadedVideosCell: UITableViewCell {
         willSet(model) {
             nameLabel.text = model?.name
             sizeVideo.text = model?.size
-            if previewVideo.image == nil {
-                previewVideo.downloadImege(from: model?.previewImageLink)
+            if let imageLink = model?.previewImageLink {
+                previewVideo.loadImage(by: imageLink)
             }
         }
     }
     
     override func prepareForReuse() {
+        previewVideo.canceled()
         previewVideo.image = nil
     }
     

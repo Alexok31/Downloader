@@ -9,7 +9,7 @@ import UIKit
 
 class DownloadingVideosCell: UITableViewCell {
 
-    @IBOutlet weak var previewVideo: CustomImageView!
+    @IBOutlet weak var previewVideo: LoadingImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var sizeVideo: UILabel!
@@ -21,21 +21,19 @@ class DownloadingVideosCell: UITableViewCell {
             progressView.setProgress(Float(model?.percent ?? 0.0), animated: false)
             sizeVideo.text = model?.size
             speedDownload.text = model?.speedDownload
-            if previewVideo.image == nil {
-                previewVideo.downloadImege(from: model?.previewImage)
+            if let imageLink = model?.previewImage {
+                previewVideo.loadImage(by: imageLink)
             }
         }
+    }
+    
+    override func prepareForReuse() {
+        previewVideo.image = nil
+        previewVideo.canceled()
     }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         previewVideo.layer.cornerRadius = 5
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-    
 }

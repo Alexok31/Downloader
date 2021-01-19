@@ -10,9 +10,10 @@ import Photos
 
 protocol DownloadedVideosInteractorType {
     var downloadedVideos: [DownloadedVideosEntity]? { get }
+    func videoUrl(by name: String) -> URL
     func downloadedVideo(for indexPath: IndexPath) -> DownloadedVideosEntity? 
     var downloadedVideosCount: Int { get }
-    func observeDownloadedVideos(complition: @escaping([DownloadedVideosEntity])->())
+    func observeDownloadedVideos(complition: @escaping([DownloadedVideosEntity])->(), update: (([Int], [Int]) -> ())?)
     func removeObserveDownloadedVideos()
     func videoPlayer(nameVideo: String) -> PlayerViewController
     func saveVideoToGallery(nameVideo: String, success: @escaping ()->(), failure: @escaping (Error)->())
@@ -28,9 +29,11 @@ class DownloadedVideosInteractor: DownloadedVideosInteractorType {
     }
     
     var downloadedVideos: [DownloadedVideosEntity]? {
-        return dataBaseService
-            .fetch(object: DownloadedVideosEntity.self)?
-            .reversed()
+        if let resultDownloadedVideos = dataBaseService
+            .fetch(object: DownloadedVideosEntity.self)?.sorted(byKeyPath: "date", ascending: false) {
+            return Array(resultDownloadedVideos)
+        }
+        return nil
     }
     
     func downloadedVideo(for indexPath: IndexPath) -> DownloadedVideosEntity? {
@@ -41,12 +44,15 @@ class DownloadedVideosInteractor: DownloadedVideosInteractorType {
         return downloadedVideos?.count ?? 0
     }
     
-    func observeDownloadedVideos(complition: @escaping([DownloadedVideosEntity])->()) {
-        dataBaseService.addObserve(object: DownloadedVideosEntity.self) { (downloadedVideos) in
+    func observeDownloadedVideos(complition: @escaping([DownloadedVideosEntity])->(), update: (([Int], [Int]) -> ())?) {
+        guard let resultDownloadedVideos = dataBaseService
+                .fetch(object: DownloadedVideosEntity.self)?.sorted(byKeyPath: "date", ascending: false) else { return }
+        
+        dataBaseService.addObserve(object: resultDownloadedVideos, initial: { (downloadedVideos) in
             if let downloadedVideos = downloadedVideos {
                 complition(downloadedVideos)
             }
-        }
+        }, update: update)
     }
     
     func removeObserveDownloadedVideos() {
@@ -62,10 +68,14 @@ class DownloadedVideosInteractor: DownloadedVideosInteractorType {
         return videoPlayer
     }
     
+    func videoUrl(by name: String) -> URL {
+        let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
+        return documentsURL.appendingPathComponent(name)
+    }
+    
     func saveVideoToGallery(nameVideo: String, success: @escaping ()->(), failure: @escaping (Error)->()) {
         DispatchQueue.main.async {
-            let documentsURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first!
-            let videoURL = documentsURL.appendingPathComponent(nameVideo)
+            let videoURL = self.videoUrl(by: nameVideo)
             PHPhotoLibrary.shared().performChanges({
                 PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: videoURL)
             }) { saved, error in

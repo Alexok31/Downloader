@@ -28,7 +28,7 @@ class SearchVideoPresenter: NSObject, SearchVideoPresenterType {
     }
     
     func observeTopPages() {
-        interactor.observeTopPages { [weak self] (topPages) in
+        interactor.observeTopPages { [weak self] in
             self?.view?.reloadTopPages()
         }
     }

@@ -6,10 +6,10 @@
 //
 
 import Foundation
-import AVKit
 
 protocol DownloadedVideosRouterType {
     func showPayer(player: PlayerViewController)
+    func showSharedView(_ sharedView: ActivityViewController)
 }
 
 class DownloadedVideosRouter: DownloadedVideosRouterType {
@@ -22,5 +22,12 @@ class DownloadedVideosRouter: DownloadedVideosRouterType {
     
     func showPayer(player: PlayerViewController) {
         view?.present(player, animated: true)
+    }
+    
+    func showSharedView(_ sharedView: ActivityViewController) {
+        guard let view = view?.view else { return }
+        sharedView.popoverPresentationController?.sourceView = view
+        sharedView.popoverPresentationController?.sourceRect = view.frame
+        self.view?.present(sharedView, animated: true)
     }
 }

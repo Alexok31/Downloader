@@ -10,8 +10,9 @@ import RealmSwift
 protocol DataBaseServise {
     func save(object: [Object], isUpdate: Bool)
     func delete(object: Object)
-    func fetch<object>(object: object.Type) -> [object]? where object: Object
-    func addObserve<object>(object: object.Type, complition: @escaping([object]?)->()) where object: Object
+    func fetch<object>(object: object.Type) -> Results<object>? where object: Object
+    func addObserve<object>(object: Results<object>, initial: @escaping([object]?) -> (),
+                            update: (([Int], [Int]) -> ())?) where object: Object
     func removeRealmNotificationToken()
 }
 
@@ -45,19 +46,19 @@ class RealmDataBaseServise: DataBaseServise {
         }
     }
     
-    func fetch<object>(object: object.Type) -> [object]? where object: Object {
+    func fetch<object>(object: object.Type) -> Results<object>? where object: Object {
         guard let realm = realm else {return nil}
-        return Array(realm.objects(object))
+        return realm.objects(object)
     }
     
-    func addObserve<object>(object: object.Type, complition: @escaping([object]?)->()) where object: Object {
-        guard let realm = realm else { return }
-        notificationToken = realm.objects(object).observe { (change) in
+    func addObserve<object>(object: Results<object>, initial: @escaping([object]?) -> (),
+                            update: (([Int], [Int]) -> ())? = nil) where object: Object {
+        notificationToken = object.observe { (change) in
             switch change {
             case .initial:
-                complition(self.fetch(object: object))
-            case .update(_, deletions: _, insertions: _, modifications: _):
-                complition(self.fetch(object: object))
+                initial(Array(object))
+            case .update(_, deletions: let deletions, insertions: let insertions, modifications: _):
+                update?(deletions, insertions)
             case .error(let error):
                 print(error)
             }

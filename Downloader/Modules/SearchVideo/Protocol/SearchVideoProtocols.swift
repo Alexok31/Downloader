@@ -22,7 +22,7 @@ protocol SearchVideoInteractorType {
     func updateTopPages()
     func topPageInfo(for indexPath: IndexPath) -> TopPageInfo?
     func tapToTopPageLink(for indexPath: IndexPath) -> String?
-    func observeTopPages(complition: @escaping(TopPagesEntity)->())
+    func observeTopPages(complition: @escaping()->())
     func removeObserve()
 }
 

@@ -9,20 +9,22 @@ import UIKit
 
 class TopPageCell: UICollectionViewCell {
 
-    @IBOutlet weak var icon: CustomImageView!
+    @IBOutlet weak var icon: LoadingImageView!
     @IBOutlet weak var name: UILabel!
     
     var modelInfo: TopPageInfo? {
         willSet(model) {
             name?.text = model?.name
-            icon?.downloadImege(from: model?.imageUrl)
+            if let imageLink = model?.imageUrl {
+                icon?.loadImage(by: imageLink)
+            }
         }
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func prepareForReuse() {
+        icon.image = nil
+        icon.canceled()
     }
-
 }
 
 

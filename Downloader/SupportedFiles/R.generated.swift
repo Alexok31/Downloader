@@ -16,7 +16,7 @@ struct R: Rswift.Validatable {
     try intern.validate()
   }
   
-  /// This `R.color` struct is generated, and contains static references to 10 colors.
+  /// This `R.color` struct is generated, and contains static references to 11 colors.
   struct color {
     /// Color `AccentColor`.
     static let accentColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "AccentColor")
@@ -24,6 +24,8 @@ struct R: Rswift.Validatable {
     static let defaultBackgroundColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "DefaultBackgroundColor")
     /// Color `activeDownloadColor`.
     static let activeDownloadColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "activeDownloadColor")
+    /// Color `elementColor`.
+    static let elementColor = Rswift.ColorResource(bundle: R.hostingBundle, name: "elementColor")
     /// Color `loadBlue`.
     static let loadBlue = Rswift.ColorResource(bundle: R.hostingBundle, name: "loadBlue")
     /// Color `loadOrange`.
@@ -58,6 +60,13 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func activeDownloadColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.activeDownloadColor, compatibleWith: traitCollection)
+    }
+    
+    /// `UIColor(named: "elementColor", bundle: ..., traitCollection: ...)`
+    @available(tvOS 11.0, *)
+    @available(iOS 11.0, *)
+    static func elementColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
+      return UIKit.UIColor(resource: R.color.elementColor, compatibleWith: traitCollection)
     }
     
     /// `UIColor(named: "loadBlue", bundle: ..., traitCollection: ...)`
@@ -107,6 +116,19 @@ struct R: Rswift.Validatable {
     @available(iOS 11.0, *)
     static func searchVideoColor(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIColor? {
       return UIKit.UIColor(resource: R.color.searchVideoColor, compatibleWith: traitCollection)
+    }
+    
+    fileprivate init() {}
+  }
+  
+  /// This `R.image` struct is generated, and contains static references to 1 images.
+  struct image {
+    /// Image `logo`.
+    static let logo = Rswift.ImageResource(bundle: R.hostingBundle, name: "logo")
+    
+    /// `UIImage(named: "logo", bundle: ..., traitCollection: ...)`
+    static func logo(compatibleWith traitCollection: UIKit.UITraitCollection? = nil) -> UIKit.UIImage? {
+      return UIKit.UIImage(resource: R.image.logo, compatibleWith: traitCollection)
     }
     
     fileprivate init() {}
@@ -226,10 +248,15 @@ struct R: Rswift.Validatable {
 struct _R: Rswift.Validatable {
   static func validate() throws {
     try storyboard.validate()
+    try nib.validate()
   }
   
-  struct nib {
-    struct _DownloadedVideosCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType {
+  struct nib: Rswift.Validatable {
+    static func validate() throws {
+      try _DownloadedVideosCell.validate()
+    }
+    
+    struct _DownloadedVideosCell: Rswift.NibResourceType, Rswift.ReuseIdentifierType, Rswift.Validatable {
       typealias ReusableType = DownloadedVideosCell
       
       let bundle = R.hostingBundle
@@ -238,6 +265,15 @@ struct _R: Rswift.Validatable {
       
       func firstView(owner ownerOrNil: AnyObject?, options optionsOrNil: [UINib.OptionsKey : Any]? = nil) -> DownloadedVideosCell? {
         return instantiate(withOwner: ownerOrNil, options: optionsOrNil)[0] as? DownloadedVideosCell
+      }
+      
+      static func validate() throws {
+        if UIKit.UIImage(named: "play.circle.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'play.circle.fill' is used in nib 'DownloadedVideosCell', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "square.and.arrow.up", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'square.and.arrow.up' is used in nib 'DownloadedVideosCell', but couldn't be loaded.") }
+        if #available(iOS 11.0, *) {
+          if UIKit.UIColor(named: "DefaultBackgroundColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'DefaultBackgroundColor' is used in storyboard 'DownloadedVideosCell', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "elementColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'elementColor' is used in storyboard 'DownloadedVideosCell', but couldn't be loaded.") }
+        }
       }
       
       fileprivate init() {}
@@ -309,6 +345,7 @@ struct _R: Rswift.Validatable {
       let name = "LaunchScreen"
       
       static func validate() throws {
+        if UIKit.UIImage(named: "logo", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'logo' is used in storyboard 'LaunchScreen', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
         }
       }

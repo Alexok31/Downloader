@@ -9,7 +9,7 @@ import UIKit
 
 class SelectionDownloadedVideoView: UIView {
 
-    @IBOutlet weak var previewImageView: CustomImageView!
+    @IBOutlet weak var previewImageView: LoadingImageView!
     @IBOutlet weak var nameVideoLabel: UILabel!
     @IBOutlet weak var sizeVideoLabel: UILabel!
     @IBOutlet weak var downloadButton: UIButton!
@@ -19,10 +19,13 @@ class SelectionDownloadedVideoView: UIView {
     var model: VideoUrlEntity? {
         willSet(model) {
             nameVideoLabel.text = ""
-            previewImageView.downloadImege(from: model?.poster)
+            previewImageView.image = nil
+            if let imageLink = model?.poster {
+                previewImageView.loadImage(by: imageLink)
+            }
         }
     }
-    
+
     @IBAction func downloadAction(_ sender: Any) {
         tapToDownloadButton?()
     }

@@ -33,7 +33,23 @@ class DownloadedVideosPresenter: NSObject, DownloadedVideosPresenterType {
     func observeDownloadedVideos() {
         interactor.observeDownloadedVideos { [weak self] (_) in
             self?.view?.reloadeDownloadedVideos()
+        } update: { [weak self] (deletions, insertions) in
+            if !deletions.isEmpty {
+                self?.view?.removeTableCell(for: deletions.map({ IndexPath(row: $0, section: 0) }))
+            }
+            
+            if !insertions.isEmpty {
+                self?.view?.insertTableCell(for: insertions.map({ IndexPath(row: $0, section: 0) }))
+            }
         }
+    }
+    
+    func sharedVideo(for indexPath: IndexPath) {
+        guard let nameVideo = interactor.downloadedVideo(for: indexPath)?.name else {return}
+        let urlVideo = interactor.videoUrl(by: nameVideo)
+        let activityItems: [Any] = [urlVideo]
+        let activityController = ActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        router.showSharedView(activityController)
     }
     
     private func playVideo(for indexPath: IndexPath) {
@@ -87,7 +103,7 @@ extension DownloadedVideosPresenter: UITableViewDelegate, UITableViewDataSource,
     
     func tableViewCell(_ cell: UITableViewCell, buttonTapped: UIButton) {
         guard let indexPath = view?.downloadedVideosTableView.indexPath(for: cell) else { return }
-        saveVideoToGallery(for: indexPath)
+        sharedVideo(for: indexPath)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
