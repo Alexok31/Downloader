@@ -9,11 +9,11 @@ import RxSwift
 
 class SearchVideoInteractor: SearchVideoInteractorType {
     
-    private var pagesService: PagesServiceType
+    private var networkService: LinksService
     private var dataBaseServise: DataBaseServise
     
-    init(pagesService: PagesServiceType, dataBaseServise: DataBaseServise) {
-        self.pagesService = pagesService
+    init(networkService: LinksService, dataBaseServise: DataBaseServise) {
+        self.networkService = networkService
         self.dataBaseServise = dataBaseServise
     }
     
@@ -39,8 +39,12 @@ class SearchVideoInteractor: SearchVideoInteractorType {
     }
     
     func updateTopPages() {
-        pagesService.getTopPages { (status, topPages) in
-            self.saveTopPages(pages: topPages)
+        networkService.topPages { (result) in
+            switch result {
+            case .succsess(let topPages):
+                self.saveTopPages(pages: topPages)
+            case .failure( _): break
+            }
         }
     }
     
@@ -59,7 +63,13 @@ class SearchVideoInteractor: SearchVideoInteractorType {
     
     private func saveTopPages(pages: TopPagesEntity?) {
         guard let topPages = pages else { return }
-        self.dataBaseServise.save(object: topPages, isUpdate: true)
+        dataBaseServise.save(object: topPages, isUpdate: true)
+        removeDiferentTopPages(pages: topPages)
+    }
+    
+    private func removeDiferentTopPages(pages: TopPagesEntity) {
+        let ids = pages.map { $0.name ?? "" }
+        self.dataBaseServise.delete(objectType: TopPageEntity.self, notIdIn: ids)
     }
     
 }

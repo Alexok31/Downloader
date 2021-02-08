@@ -52,6 +52,7 @@ extension SearchVideoPresenter: UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeue(TopPageCell.self, for: indexPath)
         cell.modelInfo = interactor.topPageInfo(for: indexPath)
+        view?.updateTopPagesHeigth()
         return cell
     }
     
@@ -61,7 +62,7 @@ extension SearchVideoPresenter: UICollectionViewDelegate, UICollectionViewDataSo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let width = collectionView.frame.width / 4 - 60 / 2
+        let width = collectionView.frame.width / 3 - 40 / 2
         let height = width + 50 - 18 - 18
         return CGSize(width: width, height: height)
     }

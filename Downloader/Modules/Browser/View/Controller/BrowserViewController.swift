@@ -22,6 +22,10 @@ class BrowserViewController: UIViewController, BrowserViewType {
     @IBOutlet weak var webKitView: WKWebView!
     @IBOutlet weak var loadingView: LoadView!
     @IBOutlet weak var downloadButton: UIButton!
+    @IBOutlet weak var progressLoadWebView: UIProgressView!
+    @IBOutlet weak var goPageBackButton: UIBarButtonItem!
+    @IBOutlet weak var goPageForwardButton: UIBarButtonItem!
+    
     
     var sheetView: SheetView?
     
@@ -34,6 +38,7 @@ class BrowserViewController: UIViewController, BrowserViewType {
         presenter?.viewDidLoad()
         configUI()
         webKitView.addObserver(self, forKeyPath: "URL", options: [.new, .old], context: nil)
+        webKitView.addObserver(self, forKeyPath: #keyPath(WKWebView.estimatedProgress), options: .new, context: nil)
     }
     
     func loadWebPage(request: URLRequest) {
@@ -41,6 +46,9 @@ class BrowserViewController: UIViewController, BrowserViewType {
     }
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+        if keyPath == "estimatedProgress" {
+            progressLoadWebPage()
+        }
         guard let newValue = change?[.newKey], let oldValue = change?[.oldKey] else {return}
         let nextUrl = "\(newValue)"
         let pastUrl = "\(oldValue)"
@@ -90,6 +98,30 @@ class BrowserViewController: UIViewController, BrowserViewType {
         configLoadingView()
     }
     
+    @IBAction private func downloadAction(_ sender: Any) {
+        presenter?.downloadAction()
+    }
+    
+    @IBAction func previousPageAction(_ sender: Any) {
+        if webKitView.canGoBack {
+            webKitView.goBack()
+        }
+    }
+    
+    @IBAction func nextPageAction(_ sender: Any) {
+        if webKitView.canGoForward {
+            webKitView.goForward()
+        }
+    }
+    
+    @IBAction func sharedAction(_ sender: Any) {
+        presenter?.sharedWebPage(url: webKitView.url)
+    }
+    
+    @IBAction func openInSafariAction(_ sender: Any) {
+        presenter?.openInSafari(url: webKitView.url)
+    }
+    
     private func setupDownloadedVideoView() {
         let topPosition = view.frame.height - 270 - (self.tabBarController?.tabBar.frame.height ?? 49.0)
         sheetView?.configure(bottomPosition: view.frame.height + 50, topPosition: topPosition)
@@ -99,23 +131,36 @@ class BrowserViewController: UIViewController, BrowserViewType {
         loadingView.backgroundColor = .clear
     }
     
-    @IBAction private func downloadAction(_ sender: Any) {
-        presenter?.downloadAction()
+    private func progressLoadWebPage() {
+        CATransaction.begin()
+        CATransaction.setCompletionBlock({
+            self.progressLoadWebView.isHidden = self.progressLoadWebView.progress == 1
+        })
+        progressLoadWebView.setProgress(Float(webKitView.estimatedProgress), animated: true)
+        CATransaction.commit()
+        goPageBackButton.isEnabled = webKitView.canGoBack
+        goPageForwardButton.isEnabled = webKitView.canGoForward
     }
 }
 
 extension BrowserViewController: WKNavigationDelegate {
     
     func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Void) {
-         defer {
-             decisionHandler(.allow)
-         }
-         guard
+        defer {
+            decisionHandler(.allow)
+        }
+        guard
             let url = navigationAction.request.url,
             let host = url.host, host.hasPrefix(Constants.instagramUrl)
-         else {
-             return
-         }
+        else {
+            return
+        }
         presenter?.checkPage(from: url.absoluteString)
-     }
+    }
+    
+    func webView(_ webView: WKWebView, didCommit navigation: WKNavigation!) {
+        progressLoadWebView.progress = 0.0
+    }
+    
+    
 }

@@ -6,6 +6,12 @@ target 'Downloader' do
   use_frameworks!
 
   # Pods for Downloader
+  
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/Crashlytics'
+  
   pod 'RxSwift', '~> 5.0.0'
   pod 'RxCocoa', '~> 5.0.0'
     

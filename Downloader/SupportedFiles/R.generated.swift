@@ -121,6 +121,20 @@ struct R: Rswift.Validatable {
     fileprivate init() {}
   }
   
+  /// This `R.file` struct is generated, and contains static references to 1 files.
+  struct file {
+    /// Resource file `GoogleService-Info.plist`.
+    static let googleServiceInfoPlist = Rswift.FileResource(bundle: R.hostingBundle, name: "GoogleService-Info", pathExtension: "plist")
+    
+    /// `bundle.url(forResource: "GoogleService-Info", withExtension: "plist")`
+    static func googleServiceInfoPlist(_: Void = ()) -> Foundation.URL? {
+      let fileResource = R.file.googleServiceInfoPlist
+      return fileResource.bundle.url(forResource: fileResource)
+    }
+    
+    fileprivate init() {}
+  }
+  
   /// This `R.image` struct is generated, and contains static references to 1 images.
   struct image {
     /// Image `logo`.
@@ -380,13 +394,18 @@ struct _R: Rswift.Validatable {
       }
       
       static func validate() throws {
+        if UIKit.UIImage(named: "chevron.left", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'chevron.left' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "chevron.right", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'chevron.right' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "externaldrive", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'externaldrive' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "externaldrive.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'externaldrive.fill' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "magnifyingglass", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'magnifyingglass' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "safari", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'safari' is used in storyboard 'Main', but couldn't be loaded.") }
+        if UIKit.UIImage(named: "square.and.arrow.up", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'square.and.arrow.up' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "video", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'video' is used in storyboard 'Main', but couldn't be loaded.") }
         if UIKit.UIImage(named: "video.fill", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Image named 'video.fill' is used in storyboard 'Main', but couldn't be loaded.") }
         if #available(iOS 11.0, *) {
           if UIKit.UIColor(named: "DefaultBackgroundColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'DefaultBackgroundColor' is used in storyboard 'Main', but couldn't be loaded.") }
+          if UIKit.UIColor(named: "elementColor", in: R.hostingBundle, compatibleWith: nil) == nil { throw Rswift.ValidationError(description: "[R.swift] Color named 'elementColor' is used in storyboard 'Main', but couldn't be loaded.") }
         }
         if _R.storyboard.main().browserViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'browserViewController' could not be loaded from storyboard 'Main' as 'BrowserViewController'.") }
         if _R.storyboard.main().downloadProcessViewController() == nil { throw Rswift.ValidationError(description:"[R.swift] ViewController with identifier 'downloadProcessViewController' could not be loaded from storyboard 'Main' as 'DownloadProcessViewController'.") }

@@ -31,17 +31,17 @@
 		8A411FCB25753303000011B2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A411FC925753303000011B2 /* Main.storyboard */; };
 		8A411FCD25753305000011B2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A411FCC25753305000011B2 /* Assets.xcassets */; };
 		8A411FD025753305000011B2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A411FCE25753305000011B2 /* LaunchScreen.storyboard */; };
-		8A50FFAA2575398E0084D97A /* StatusServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFA92575398E0084D97A /* StatusServerResponse.swift */; };
-		8A50FFC025753A8D0084D97A /* BaseRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFBE25753A8D0084D97A /* BaseRequestService.swift */; };
-		8A50FFC125753A8D0084D97A /* AlamofireBaseRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFBF25753A8D0084D97A /* AlamofireBaseRequestService.swift */; };
+		8A50FFC125753A8D0084D97A /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFBF25753A8D0084D97A /* APIManager.swift */; };
 		8A50FFC425753B040084D97A /* NetworkHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFC325753B040084D97A /* NetworkHelper.swift */; };
-		8A50FFCC25753CE50084D97A /* PagesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFCB25753CE50084D97A /* PagesService.swift */; };
 		8A50FFD025753D650084D97A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFCF25753D650084D97A /* Constants.swift */; };
 		8A50FFD52575451F0084D97A /* TopPagesEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFD42575451F0084D97A /* TopPagesEntity.swift */; };
-		8A50FFDB257549AA0084D97A /* ApiManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFDA257549A90084D97A /* ApiManager.swift */; };
+		8A50FFDB257549AA0084D97A /* LinksApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A50FFDA257549A90084D97A /* LinksApi.swift */; };
 		8A57F06C25A4B48B0065AEB2 /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A57F06B25A4B48B0065AEB2 /* Extension+String.swift */; };
+		8A69ACF125B9F23400C1441E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A69ACF025B9F23300C1441E /* GoogleService-Info.plist */; };
 		8A72E8B825A4D898005634A1 /* Extension+Array.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72E8B725A4D898005634A1 /* Extension+Array.swift */; };
 		8A72E8BB25A4E42C005634A1 /* CustomScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A72E8BA25A4E42C005634A1 /* CustomScrollView.swift */; };
+		8A88301A25D1756D00161F07 /* URLRequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A88301925D1756D00161F07 /* URLRequestBuilder.swift */; };
+		8A88302125D1791C00161F07 /* LinksService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A88302025D1791C00161F07 /* LinksService.swift */; };
 		8A934B7E2595D536002B1FA2 /* SearchVideoProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A934B7D2595D536002B1FA2 /* SearchVideoProtocols.swift */; };
 		8A9C101525A8932A00C9A16E /* StrokeColorAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C101025A8932900C9A16E /* StrokeColorAnimation.swift */; };
 		8A9C101625A8932A00C9A16E /* RotationAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A9C101125A8932900C9A16E /* RotationAnimation.swift */; };
@@ -57,7 +57,6 @@
 		8ABB547C2575541800D4D90B /* SearchVideoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB547B2575541800D4D90B /* SearchVideoPresenter.swift */; };
 		8ABB547F2575542800D4D90B /* SearchVideoConfiguratorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB547E2575542800D4D90B /* SearchVideoConfiguratorType.swift */; };
 		8ABB54862575551400D4D90B /* DataBaseServise.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8ABB54852575551400D4D90B /* DataBaseServise.swift */; };
-		8AC0D3DE257EAA9F00A691B8 /* BrowseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC0D3DD257EAA9F00A691B8 /* BrowseService.swift */; };
 		8AC0D3E2257EACDB00A691B8 /* VideoUrlEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AC0D3E1257EACDB00A691B8 /* VideoUrlEntity.swift */; };
 		8AD29A2225B7241800BA37BC /* LoadingImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD29A2125B7241800BA37BC /* LoadingImageView.swift */; };
 		8AD29A2625B7247B00BA37BC /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8AD29A2525B7247B00BA37BC /* ImageCache.swift */; };
@@ -108,17 +107,17 @@
 		8A411FCC25753305000011B2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A411FCF25753305000011B2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A411FD125753305000011B2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8A50FFA92575398E0084D97A /* StatusServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusServerResponse.swift; sourceTree = "<group>"; };
-		8A50FFBE25753A8D0084D97A /* BaseRequestService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRequestService.swift; sourceTree = "<group>"; };
-		8A50FFBF25753A8D0084D97A /* AlamofireBaseRequestService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlamofireBaseRequestService.swift; sourceTree = "<group>"; };
+		8A50FFBF25753A8D0084D97A /* APIManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		8A50FFC325753B040084D97A /* NetworkHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkHelper.swift; sourceTree = "<group>"; };
-		8A50FFCB25753CE50084D97A /* PagesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PagesService.swift; sourceTree = "<group>"; };
 		8A50FFCF25753D650084D97A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		8A50FFD42575451F0084D97A /* TopPagesEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopPagesEntity.swift; sourceTree = "<group>"; };
-		8A50FFDA257549A90084D97A /* ApiManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiManager.swift; sourceTree = "<group>"; };
+		8A50FFDA257549A90084D97A /* LinksApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksApi.swift; sourceTree = "<group>"; };
 		8A57F06B25A4B48B0065AEB2 /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
+		8A69ACF025B9F23300C1441E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8A72E8B725A4D898005634A1 /* Extension+Array.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+Array.swift"; sourceTree = "<group>"; };
 		8A72E8BA25A4E42C005634A1 /* CustomScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomScrollView.swift; sourceTree = "<group>"; };
+		8A88301925D1756D00161F07 /* URLRequestBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequestBuilder.swift; sourceTree = "<group>"; };
+		8A88302025D1791C00161F07 /* LinksService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LinksService.swift; sourceTree = "<group>"; };
 		8A934B7D2595D536002B1FA2 /* SearchVideoProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVideoProtocols.swift; sourceTree = "<group>"; };
 		8A9C101025A8932900C9A16E /* StrokeColorAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrokeColorAnimation.swift; sourceTree = "<group>"; };
 		8A9C101125A8932900C9A16E /* RotationAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RotationAnimation.swift; sourceTree = "<group>"; };
@@ -134,7 +133,6 @@
 		8ABB547B2575541800D4D90B /* SearchVideoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVideoPresenter.swift; sourceTree = "<group>"; };
 		8ABB547E2575542800D4D90B /* SearchVideoConfiguratorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchVideoConfiguratorType.swift; sourceTree = "<group>"; };
 		8ABB54852575551400D4D90B /* DataBaseServise.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBaseServise.swift; sourceTree = "<group>"; };
-		8AC0D3DD257EAA9F00A691B8 /* BrowseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrowseService.swift; sourceTree = "<group>"; };
 		8AC0D3E1257EACDB00A691B8 /* VideoUrlEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoUrlEntity.swift; sourceTree = "<group>"; };
 		8AD29A2125B7241800BA37BC /* LoadingImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingImageView.swift; sourceTree = "<group>"; };
 		8AD29A2525B7247B00BA37BC /* ImageCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
@@ -236,12 +234,13 @@
 			path = Configurator;
 			sourceTree = "<group>";
 		};
-		8A123040257AC75F00ADB83F /* Download */ = {
+		8A123040257AC75F00ADB83F /* Service */ = {
 			isa = PBXGroup;
 			children = (
 				8A123041257AC78400ADB83F /* DownloadService.swift */,
+				8A88302025D1791C00161F07 /* LinksService.swift */,
 			);
-			path = Download;
+			path = Service;
 			sourceTree = "<group>";
 		};
 		8A123045257ACEB400ADB83F /* DownloadProcess */ = {
@@ -387,12 +386,10 @@
 		8A50FFA5257538980084D97A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				8A123040257AC75F00ADB83F /* Download */,
+				8A123040257AC75F00ADB83F /* Service */,
 				8A50FFC725753BF50084D97A /* BaseRequestService */,
 				8A50FFB1257539FC0084D97A /* Helpers */,
-				8A50FFCB25753CE50084D97A /* PagesService.swift */,
-				8AC0D3DD257EAA9F00A691B8 /* BrowseService.swift */,
-				8A50FFDA257549A90084D97A /* ApiManager.swift */,
+				8A50FFDA257549A90084D97A /* LinksApi.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -401,7 +398,6 @@
 			isa = PBXGroup;
 			children = (
 				8A50FFC325753B040084D97A /* NetworkHelper.swift */,
-				8A50FFA92575398E0084D97A /* StatusServerResponse.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -409,8 +405,8 @@
 		8A50FFC725753BF50084D97A /* BaseRequestService */ = {
 			isa = PBXGroup;
 			children = (
-				8A50FFBE25753A8D0084D97A /* BaseRequestService.swift */,
-				8A50FFBF25753A8D0084D97A /* AlamofireBaseRequestService.swift */,
+				8A88301925D1756D00161F07 /* URLRequestBuilder.swift */,
+				8A50FFBF25753A8D0084D97A /* APIManager.swift */,
 			);
 			path = BaseRequestService;
 			sourceTree = "<group>";
@@ -442,10 +438,11 @@
 		8A57F06F25A4BB050065AEB2 /* SupportedFiles */ = {
 			isa = PBXGroup;
 			children = (
-				8A411FD125753305000011B2 /* Info.plist */,
 				8A411FCC25753305000011B2 /* Assets.xcassets */,
 				8A411FCE25753305000011B2 /* LaunchScreen.storyboard */,
 				8A9EF85E257538300046E545 /* R.generated.swift */,
+				8A411FD125753305000011B2 /* Info.plist */,
+				8A69ACF025B9F23300C1441E /* GoogleService-Info.plist */,
 			);
 			path = SupportedFiles;
 			sourceTree = "<group>";
@@ -796,6 +793,7 @@
 				8AFB3D1425A4C4780083BCA9 /* SheetView.xib in Resources */,
 				8A123064257AD2DF00ADB83F /* DownloadingVideosCell.xib in Resources */,
 				8AE92AF32586C0EA007E5231 /* DownloadedVideosCell.xib in Resources */,
+				8A69ACF125B9F23400C1441E /* GoogleService-Info.plist in Resources */,
 				8A411FD025753305000011B2 /* LaunchScreen.storyboard in Resources */,
 				8A411FCD25753305000011B2 /* Assets.xcassets in Resources */,
 				8A411FCB25753303000011B2 /* Main.storyboard in Resources */,
@@ -869,11 +867,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A50FFC025753A8D0084D97A /* BaseRequestService.swift in Sources */,
 				8ABB54782575540900D4D90B /* SearchVideoInteractor.swift in Sources */,
 				8A123063257AD2DF00ADB83F /* DownloadingVideosCell.swift in Sources */,
 				8A3C51D82586B8BD00F9B0C4 /* DownloadedVideosEntity.swift in Sources */,
-				8A50FFDB257549AA0084D97A /* ApiManager.swift in Sources */,
+				8A50FFDB257549AA0084D97A /* LinksApi.swift in Sources */,
 				8A0630862586B7470076BDF0 /* DownloadedVideosConfigurator.swift in Sources */,
 				8AE5282E2586CEFF007E696D /* TableViewCellDelegate.swift in Sources */,
 				8A50FFC425753B040084D97A /* NetworkHelper.swift in Sources */,
@@ -887,6 +884,7 @@
 				8AFF504F25766FC700A8BE0A /* BrowserInteractor.swift in Sources */,
 				8AE528322586D289007E696D /* UIViewController + Extension(Alert).swift in Sources */,
 				8AFF504525766F6E00A8BE0A /* BrowserConfigurator.swift in Sources */,
+				8A88302125D1791C00161F07 /* LinksService.swift in Sources */,
 				8AB384142584D7D200B78265 /* Data + Extension.swift in Sources */,
 				8A12304F257ACF8500ADB83F /* DownloadProcessViewController.swift in Sources */,
 				8A9C101525A8932A00C9A16E /* StrokeColorAnimation.swift in Sources */,
@@ -897,7 +895,6 @@
 				8A06307E2586B6FF0076BDF0 /* DownloadedVideosInteractor.swift in Sources */,
 				8ABB54862575551400D4D90B /* DataBaseServise.swift in Sources */,
 				8A934B7E2595D536002B1FA2 /* SearchVideoProtocols.swift in Sources */,
-				8A50FFAA2575398E0084D97A /* StatusServerResponse.swift in Sources */,
 				8AFC77B32575830D00DF1FE9 /* TopPageCell.swift in Sources */,
 				8A362DCE25B5A1A200098B16 /* PlayerViewController.swift in Sources */,
 				8A123053257ACFB800ADB83F /* DownloadProcessInteractor.swift in Sources */,
@@ -910,10 +907,8 @@
 				8A50FFD025753D650084D97A /* Constants.swift in Sources */,
 				8A0630772586B6B70076BDF0 /* DownloadedVideosViewController.swift in Sources */,
 				8A123056257ACFC400ADB83F /* DownloadProcessPresenter.swift in Sources */,
-				8AC0D3DE257EAA9F00A691B8 /* BrowseService.swift in Sources */,
 				8A0630822586B70B0076BDF0 /* DownloadedVideosPresenter.swift in Sources */,
 				8A123059257ACFEC00ADB83F /* DownloadProcessRouter.swift in Sources */,
-				8A50FFCC25753CE50084D97A /* PagesService.swift in Sources */,
 				8A123068257AD59500ADB83F /* UITableView+Extension.swift in Sources */,
 				8A411FC625753303000011B2 /* SceneDelegate.swift in Sources */,
 				8A12306B257AD61000ADB83F /* DownloadProcessConfigurator.swift in Sources */,
@@ -925,11 +920,12 @@
 				8A57F06C25A4B48B0065AEB2 /* Extension+String.swift in Sources */,
 				8A9C102225A8A44D00C9A16E /* Extension+CALayer.swift in Sources */,
 				8A50FFD52575451F0084D97A /* TopPagesEntity.swift in Sources */,
+				8A88301A25D1756D00161F07 /* URLRequestBuilder.swift in Sources */,
 				8AFC77BA257584C700DF1FE9 /* UICollectionView+Extension.swift in Sources */,
 				8ABB547C2575541800D4D90B /* SearchVideoPresenter.swift in Sources */,
 				8AD29A2225B7241800BA37BC /* LoadingImageView.swift in Sources */,
 				8A9C101725A8932A00C9A16E /* LoadView.swift in Sources */,
-				8A50FFC125753A8D0084D97A /* AlamofireBaseRequestService.swift in Sources */,
+				8A50FFC125753A8D0084D97A /* APIManager.swift in Sources */,
 				8A123042257AC78400ADB83F /* DownloadService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1085,7 +1081,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ruch.com.downloader;
+				PRODUCT_BUNDLE_IDENTIFIER = alex.app.GeThisVideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -1105,7 +1101,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = ruch.com.downloader;
+				PRODUCT_BUNDLE_IDENTIFIER = alex.app.GeThisVideo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

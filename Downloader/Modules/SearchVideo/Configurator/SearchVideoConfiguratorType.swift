@@ -20,8 +20,8 @@ class SearchVideoConfigurator: SearchVideoConfiguratorType {
     }
     
     private var interactor: SearchVideoInteractorType {
-        let pagesService = PagesService(requestService: AlamofireBaseRequestService())
+        let linksService = LinksService()
         let dataBase = RealmDataBaseServise()
-        return SearchVideoInteractor(pagesService: pagesService, dataBaseServise: dataBase)
+        return SearchVideoInteractor(networkService: linksService, dataBaseServise: dataBase)
     }
 }

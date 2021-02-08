@@ -8,7 +8,10 @@
 import Foundation
 
 struct VideoUrlEntity: Decodable {
+    var size: String?
+    var title: String?
     var download_link: String?
+    var duration: String?
     var ext: String?
     var poster: String?
 }

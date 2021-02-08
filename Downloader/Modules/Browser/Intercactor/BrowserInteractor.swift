@@ -9,7 +9,7 @@ import RxSwift
 
 protocol BrowserInteractorType {
     var videoUrl: PublishSubject<VideoUrlEntity> { get }
-    var statusServer: PublishSubject<StatusServerResponse> { get }
+    var statusServer: PublishSubject<ResponseError> { get }
     var urlVideoBody: VideoUrlEntity? { get set }
     var request: URLRequest? { get }
     func getUrlVideo(from linkUrl: String?)
@@ -22,16 +22,16 @@ protocol BrowserInteractorType {
 class BrowserInteractor: BrowserInteractorType {
     
     var videoUrl = PublishSubject<VideoUrlEntity>.init()
-    var statusServer = PublishSubject<StatusServerResponse>.init()
+    var statusServer = PublishSubject<ResponseError>.init()
     var urlVideoBody: VideoUrlEntity?
     var urlString = String()
     
     private var downloadControll: DownloadControll?
-    private var browseService: BrowseService
+    private var netowkService: LinksService
     private var dispouseBag = DisposeBag()
     
-    init(browseService: BrowseService) {
-        self.browseService = browseService
+    init(netowkService: LinksService) {
+        self.netowkService = netowkService
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate,
               let downloadControll = appDelegate.downloadControll else { return }
         self.downloadControll = downloadControll
@@ -61,22 +61,25 @@ class BrowserInteractor: BrowserInteractorType {
     }
     
     func getUrlVideo(from linkUrl: String?) {
-        guard let linkUrl = linkUrl else {return}
-        browseService.getUrlVideo(from: linkUrl) { (statusServer, videoUrlBody) in
-            guard statusServer != .reqerstCancelled else { return }
-            if let videoUrlBody = videoUrlBody,
-               let _ = URL(string: videoUrlBody.download_link ?? "") {
-                self.urlVideoBody = videoUrlBody
-                self.videoUrl.onNext(videoUrlBody)
-                self.statusServer.onNext(.successful)
-            } else {
-                self.statusServer.onNext(.videoNotAvailable)
+        guard let linkUrl = linkUrl, !linkUrl.isEmpty else { return }
+        netowkService.getUrlVideo(pageLink: linkUrl) { (result) in
+            switch result {
+            case .succsess(let videoUrlBody):
+                if let videoUrlBody = videoUrlBody,
+                   let _ = URL(string: videoUrlBody.download_link ?? "") {
+                    self.urlVideoBody = videoUrlBody
+                    self.videoUrl.onNext(videoUrlBody)
+                    self.statusServer.onNext(.empty)
+                }
+            case .failure(let error):
+                guard error != .reqerstCancelled else { return }
+                self.statusServer.onNext(error)
             }
         }
     }
     
     func stopAllDataTasks() {
-        browseService.stopAllDataTasks()
+        netowkService.stopAllDataTasks()
     }
     
     private func setVideoName(name: String?, fileExtension: String) -> String {

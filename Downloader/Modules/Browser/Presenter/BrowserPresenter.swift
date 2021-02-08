@@ -13,6 +13,8 @@ protocol BrowserPresenterType {
     func downloadAction()
     func tapToDownloadButton()
     func checkPage(from urlLink: String)
+    func openInSafari(url: URL?)
+    func sharedWebPage(url: URL?)
 }
 
 class BrowserPresenter: NSObject, BrowserPresenterType {
@@ -54,9 +56,21 @@ class BrowserPresenter: NSObject, BrowserPresenterType {
         interactor.getUrlVideo(from: urlLink)
     }
     
+    func openInSafari(url: URL?) {
+        guard let url = url else { return }
+        UIApplication.shared.open(url)
+    }
+    
     private func loadWebPage() {
         guard let request = interactor.request else { return }
         view?.loadWebPage(request: request)
+    }
+    
+    func sharedWebPage(url: URL?) {
+        guard let url = url else { return }
+        let activityItems: [Any] = [url]
+        let activityController = ActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        router.showSharedView(activityController)
     }
     
     private func setBadge(value: String) {
@@ -73,12 +87,11 @@ class BrowserPresenter: NSObject, BrowserPresenterType {
     }
     
     private func  observeUrlVideoResult() {
-        interactor.statusServer.subscribe { [weak self] (statusServerResponse) in
-            let isActive = statusServerResponse.element == .successful
+        interactor.statusServer.subscribe { [weak self] (errorResponse) in
+            let isActive = errorResponse.element == .empty
             self?.view?.changeDownloadButtonState(isActive: isActive)
             self?.view?.loadingView(isActive: false)
         }.disposed(by: disposeBag)
-
     }
     
     private func observeVideoUrl() {

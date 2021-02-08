@@ -10,6 +10,7 @@ import RealmSwift
 protocol DataBaseServise {
     func save(object: [Object], isUpdate: Bool)
     func delete(object: Object)
+    func delete(objectType: Object.Type, notIdIn: [String])
     func fetch<object>(object: object.Type) -> Results<object>? where object: Object
     func addObserve<object>(object: Results<object>, initial: @escaping([object]?) -> (),
                             update: (([Int], [Int]) -> ())?) where object: Object
@@ -46,6 +47,13 @@ class RealmDataBaseServise: DataBaseServise {
         }
     }
     
+    func delete(objectType: Object.Type, notIdIn: [String]) {
+        guard let objectsToDelete = realm?.objects(objectType).filter("NOT name IN %@", notIdIn) else { return }
+        realmWriteBlock { [weak self] in
+            self?.realm?.delete(objectsToDelete)
+        }
+    }
+    
     func fetch<object>(object: object.Type) -> Results<object>? where object: Object {
         guard let realm = realm else {return nil}
         return realm.objects(object)
@@ -79,6 +87,4 @@ class RealmDataBaseServise: DataBaseServise {
             print("error realm Write Block")
         }
     }
-    
-    
 }
